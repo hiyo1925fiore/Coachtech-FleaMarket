@@ -40,7 +40,7 @@ services:
       - 8080:80
 
   mail:
-    # Web画面: http://localhost:19980
+    # Web画面: http://localhost:8025
     image: axllent/mailpit:latest
     ports:
       - "1025:1025"

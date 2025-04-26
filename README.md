@@ -44,9 +44,11 @@ php artisan storage:link
 - PHP 8.4.1
 - Laravel 8.83.8
 - MySQL 8.0.26
+- Mailpit
 ## ER図
 ![er drawio](https://github.com/user-attachments/assets/673cd90b-c262-4492-b067-208198603cd0)
 
 ## URL
 - 開発環境：http://localhost/
 - phpMyAdmin：http://localhost:8080/
+- Mailpit：http://localhost:8025/

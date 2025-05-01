@@ -46,7 +46,7 @@ php artisan storage:link
 - MySQL 8.0.26
 - Mailpit
 ## ER図
-![er drawio](https://github.com/user-attachments/assets/673cd90b-c262-4492-b067-208198603cd0)
+![er drawio](https://github.com/user-attachments/assets/42da966c-354e-48fc-94ac-0b5101eb6897)
 
 ## URL
 - 開発環境：http://localhost/

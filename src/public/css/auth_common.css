@@ -1,0 +1,23 @@
+.header {
+    width: 100%;
+    height: 82px;
+}
+
+.header__inner {
+    height: 100%;
+    background-color: #000000;
+    padding-top: 22px;
+    padding-left: 25px;
+}
+
+.header__logo {
+    width: 370px;
+    height: 36px;
+}
+
+@media screen and (max-width: 850px) {
+    /* 850px以下に適用されるCSS（タブレット用） */
+    .header {
+        width: 100%;
+    }
+}

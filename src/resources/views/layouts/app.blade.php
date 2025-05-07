@@ -15,17 +15,23 @@
     <header class="header">
         <div class="header__inner">
             <img src="{{asset('image/logo.svg')}}" alt="COACHTECH" class="header__logo">
+            <form action="/search" class="search-form" method="get">
+                @csrf
+                <input class="search-form__input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="なにをお探しですか？">
+            </form>
             <nav class="header__nav">
-                <form action="/search" class="search-form" method="get">
-                    @csrf
-                    <input class="search-form__input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="なにをお探しですか？">
-                </form>
                 <ul class="header__list">
                     <li class="header__list-item">
+                        @auth
+                        <!-- ログイン後 -->
                         <form action="/logout" class="header__form" method="post">
                             @csrf
                             <button class="header__form--logout" type="submit">ログアウト</button>
                         </form>
+                        @else
+                        <!-- ログイン前 -->
+                        <a class="header__link--login" href="/login">ログイン</a>
+                        @endauth
                     </li>
 
                     <li class="header__list-item">
@@ -37,7 +43,6 @@
 
                     <li class="header__list-item">
                         <a class="header__link-sell" href="/sell">出品</a>
-                        </form>
                     </li>
                 </ul>
             </nav>

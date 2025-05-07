@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Requests\LoginRequest;
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
@@ -38,10 +39,17 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login');
         });
 
-        RateLimiter::for('login', function (Request $request) {
-            $email = (string) $request->email;
+        // Use custom LoginRequest for authentication
+        Fortify::authenticateUsing(function (LoginRequest $request) {
+            $request->authenticate();
 
-            return Limit::perMinute(10)->by($email . $request->ip());
+            return app(\Laravel\Fortify\Contracts\LoginResponse::class);
         });
+
+        //RateLimiter::for('login', function (Request $request) {
+            //$email = (string) $request->email;
+
+            //return Limit::perMinute(10)->by($email . $request->ip());
+        //});
     }
 }

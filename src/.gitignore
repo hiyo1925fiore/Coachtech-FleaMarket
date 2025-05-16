@@ -2,14 +2,6 @@
 /public/hot
 /public/storage
 /storage/*.key
-/storage/app/public/*.php
-/storage/app/public/css/*
-/storage/app/public/js/*
-/storage/framework/cache/*
-/storage/framework/sessions/*
-/storage/framework/testing/*
-/storage/framework/views/*
-/storage/logs/*
 /vendor
 .env
 .env.backup
@@ -21,7 +13,3 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-
-# 画像ファイルは除外しない
-!/storage/app/public/img/
-!/storage/app/public/img/*

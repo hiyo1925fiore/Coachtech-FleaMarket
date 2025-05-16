@@ -21,7 +21,7 @@ class CreateExhibitionsTable extends Migration
             $table->string('brand')->nullable();
             $table->integer('price');
             $table->string('description');
-            $table->string('image');
+            $table->string('img_url');
             $table->timestamps();
         });
     }

@@ -10,4 +10,8 @@ class ExhibitionController extends Controller
     public function getList(){
         return view('itemlist');
     }
+
+    public function getExhibition(){
+        return view('exhibition');
+    }
 }

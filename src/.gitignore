@@ -13,3 +13,11 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# storage/app/public/imgは除外しない
+/storage/*
+!/storage/app
+/storage/app/*
+!/storage/app/public
+/storage/app/public/*
+!/storage/app/public/img

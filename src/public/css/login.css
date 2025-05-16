@@ -1,23 +1,23 @@
-.register__content {
+.login__content {
     font-family: "Inter";
     font-optical-sizing: auto;
     font-style: normal;
     padding: 92px 0;
 }
 
-.register-form__heading-title {
+.login-form__heading-title {
     margin: 0;
     text-align: center;
     font-weight: 700;
     font-size: 36px;
 }
 
-.register-form {
+.login-form {
     width: 45%;
     margin: 66px auto 20px;
 }
 
-.register-form {
+.login-form {
     .form__group:has(~ .form__group) {
         margin-bottom: 38px;
     }
@@ -66,13 +66,13 @@
     cursor: pointer;
 }
 
-.login__link {
+.register__link {
     width: 45%;
     margin: 0 auto;
     text-align: center;
 }
 
-.login__button-submit {
+.register__button-submit {
     font-size: 20px;
     font-weight: 400;
     color: #0073cc;

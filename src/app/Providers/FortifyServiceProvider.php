@@ -39,17 +39,9 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login');
         });
 
-        // Use custom LoginRequest for authentication
-        Fortify::authenticateUsing(function (LoginRequest $request) {
-            $request->authenticate();
-
-            return app(\Laravel\Fortify\Contracts\LoginResponse::class);
+        RateLimiter::for('login', function (Request $request) {
+            $email = (string) $request->email;
+            return Limit::perMinute(10)->by($email . $request->ip());
         });
-
-        //RateLimiter::for('login', function (Request $request) {
-            //$email = (string) $request->email;
-
-            //return Limit::perMinute(10)->by($email . $request->ip());
-        //});
     }
 }

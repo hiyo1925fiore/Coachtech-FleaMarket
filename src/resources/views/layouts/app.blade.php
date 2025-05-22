@@ -16,10 +16,10 @@
     <header class="header">
         <div class="header__inner">
             <img src="{{asset('image/logo.svg')}}" alt="COACHTECH" class="header__logo">
-            <form action="/search" class="search-form" method="get">
-                @csrf
-                <input class="search-form__input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="なにをお探しですか？">
-            </form>
+
+            <!-- 検索コンポーネント -->
+            @livewire('item-search-component')
+
             <nav class="header__nav">
                 <ul class="header__list">
                     <li class="header__list-item">

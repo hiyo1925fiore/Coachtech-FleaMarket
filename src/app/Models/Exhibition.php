@@ -23,6 +23,11 @@ class Exhibition extends Model
         'image',
     ];
 
+    public function isPurchased(){
+        //purchasesテーブルに同じexhibition_idがあるかチェック
+        return $this->purchase()->exists();
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class,'seller_id');

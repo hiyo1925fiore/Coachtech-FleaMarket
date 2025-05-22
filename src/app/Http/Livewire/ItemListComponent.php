@@ -13,6 +13,10 @@ class ItemListComponent extends Component
     public $activeTab = 'recommended';
     public $recommendedExhibitions = [];
     public $myListExhibitions = [];
+    public $searchTerm = '';
+
+    // Livewireリスナーを登録 - 検索イベントを監視
+    protected $listeners = ['searchPerformed' => 'updateSearchTerm'];
 
     public function mount()
     {
@@ -23,14 +27,35 @@ class ItemListComponent extends Component
         $this->loadMyListExhibitions();
     }
 
+    // 検索語が変更された時に呼ばれるメソッド
+    public function updateSearchTerm($term)
+    {
+        $this->searchTerm = $term;
+        $this->loadRecommendedExhibitions();
+        $this->loadMyListExhibitions();
+    }
+
+    // エンターキーが押されたときに実行される検索メソッド
+    public function performSearch()
+    {
+        $this->loadRecommendedExhibitions();
+        $this->loadMyListExhibitions();
+    }
+
     public function loadRecommendedExhibitions()
     {
         // おすすめ商品の取得ロジック
         $id=Auth::id();
 
-        $this->recommendedExhibitions = Exhibition::where('seller_id', '<>', $id)
-            ->latest()
-            ->get();
+        $query = Exhibition::where('seller_id', '<>', $id)
+            ->with(['purchase']);
+
+        // 検索ワードが入力されている場合のみ検索結果を反映する
+        if (!empty($this->searchTerm)) {
+            $query->where('name', 'like', '%' . $this->searchTerm . '%');
+        }
+
+        $this->recommendedExhibitions = $query->latest()->get();
     }
 
     public function loadMyListExhibitions()
@@ -42,9 +67,20 @@ class ItemListComponent extends Component
             ->pluck('exhibition_id')
             ->toArray();
 
-        $this->myListExhibitions = Exhibition::whereIn('id', $favoriteExhibitionIds)
-            ->latest()
-            ->get();
+        $query = Exhibition::whereIn('id', $favoriteExhibitionIds)
+            ->with(['purchase']);
+
+        // 検索ワードが入力されている場合のみ検索結果を反映する
+        if (!empty($this->searchTerm)) {
+            $query->where('name', 'like', '%' . $this->searchTerm . '%');
+        }
+
+        $this->myListExhibitions = $query->latest()->get();
+
+        //$this->myListExhibitions = Exhibition::whereIn('id', $favoriteExhibitionIds)
+        //->with(['purchase'])
+            //->latest()
+            //->get();
     }
 
     public function changeTab($tab)

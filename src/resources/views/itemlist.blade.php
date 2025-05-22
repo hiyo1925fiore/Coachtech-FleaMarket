@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="itemlist__content">
+<div class="content">
     <livewire:item-list-component :initial-tab="$initial_tab ?? 'recommended'"
     />
 </div>

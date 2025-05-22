@@ -20,8 +20,11 @@
     margin-left: 25px;
 }
 
-.search-form {
+.search-form__content {
     width: 563px;
+}
+
+.search-form {
     padding: 15px 31px;
 }
 
@@ -114,8 +117,12 @@
         margin-left: 25px;
     }
 
-    .search-form {
+    .search-form__content {
         width: 38%;
+    }
+
+    .search-form {
+        width: 100%;
         padding: 7px;
     }
 

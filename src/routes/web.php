@@ -25,10 +25,12 @@ Route::get('/', function (Request $request) {
         'initial_tab' => $page === 'mylist' ? 'mylist' : 'recommended'
     ]);
 });
+Route::get('/item/:{exhibition_id}',[ExhibitionController::class,'getDetail']);
 Route::post('/register', [UserController::class, 'storeUser']);
 Route::post('/login', [UserController::class, 'loginUser']);
 
 Route::middleware('auth')->group(function () {
+    Route::post('/item/:{exhibition_id}',[CommentController::class,'postComment']);
     Route::get('/sell', [ExhibitionController::class, 'getExhibition']);
     Route::get('/mypage', [ProfileController::class, 'getMypage']);
     Route::get('/mypage/profile', function () {

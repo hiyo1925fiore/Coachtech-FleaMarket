@@ -76,11 +76,6 @@ class ItemListComponent extends Component
         }
 
         $this->myListExhibitions = $query->latest()->get();
-
-        //$this->myListExhibitions = Exhibition::whereIn('id', $favoriteExhibitionIds)
-        //->with(['purchase'])
-            //->latest()
-            //->get();
     }
 
     public function changeTab($tab)

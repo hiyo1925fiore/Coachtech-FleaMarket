@@ -1,0 +1,329 @@
+.content {
+    width: 100%;
+    padding: 95px 66px;
+    font-family: "Inter";
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.detail__content {
+    width: 100%;
+    display: flex;
+}
+.exhibition-image-area {
+    width: 50%;
+    padding: 36px 45px;
+}
+
+.exhibition-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 4px;
+}
+
+.exhibition-description-area {
+    width: 50%;
+    padding: 0 65px;
+}
+
+.exhibition-title {
+    margin: 0;
+    height: 203px;
+}
+
+.exhibition-title__name {
+    width: 100%;
+    height: 77px;
+    line-height: 77px;
+    font-size: 45px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.exhibition-title__brand {
+    margin: 0;
+    height: 28px;
+    line-height: 28px;
+    font-size: 20px;
+    font-weight: 400;
+    color: #000000;
+}
+
+.exhibition-title__price {
+    margin: 28px 0 0 0;
+    height: 45px;
+    line-height: 45px;
+}
+
+.exhibition-title__price-text {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 400;
+    vertical-align: bottom;
+    color: #000000;
+}
+
+.exhibition-title__price-price {
+    font-size: 45px;
+    font-weight: 400;
+    color: #000000;
+}
+
+.exhibition-actions {
+    display: flex;
+    margin-left: 45px;
+    width: 144px;
+    height: 67px;
+    align-items: center; /* 追加: 垂直方向の中央揃え */
+    justify-content: space-between;
+}
+
+.exhibition-actions__item {
+    width: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* 追加: 垂直方向の中央揃え */
+}
+
+.favorite-button {
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    display: flex; /* 追加 */
+    align-items: center; /* 追加 */
+    justify-content: center; /* 追加 */
+}
+
+.favorite-icon,
+.comment-icon {
+    width: 40px;
+    height: 40px;
+    display: block; /* 追加 */
+}
+
+.favorite-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.favorite-button::before {
+    content: "★";
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    color: transparent;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.favorite-button.favorited {
+    background-color: #ffd700;
+}
+
+.exhibition-actions__count-text {
+    margin: 4px 0 0 0;
+    height: 22px;
+    line-height: 22px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.purchase-link {
+    display: block;
+    margin: 22px 0;
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    background-color: #ff5555;
+    font-size: 30px;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border: transparent;
+    border-radius: 4px;
+}
+
+.exhibition-description {
+    width: 100%;
+}
+
+.exhibition-description__title {
+    height: 74px;
+    line-height: 74px;
+    font-size: 36px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.exhibition-description__description {
+    padding: 50px 0;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
+    color: #000000;
+}
+
+.exhibition-info {
+    width: 100%;
+    height: 230px;
+}
+
+.exhibition-info__title,
+.exhibition-comments__title {
+    margin: 0;
+    height: 100px;
+    line-height: 100px;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.exhibition-info__title {
+    color: #000000;
+}
+
+.exhibition-info__inner {
+    width: 100%;
+}
+
+.exhibition-info__row-categories,
+.exhibition-info__row-condition {
+    text-align: left;
+}
+
+.exhibition-info__row-categories {
+    height: 30px;
+}
+
+.exhibition-info__inner-title {
+    width: 35%;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.exhibition-info__categories,
+.exhibition-info__condition {
+    width: 65%;
+    font-size: 20px;
+    font-weight: 400;
+    color: #000000;
+}
+
+.exhibition-info__categories {
+    flex-wrap: wrap;
+}
+
+.category-tag {
+    background-color: #d9d9d9;
+    color: #000000;
+    padding: 4px 20px;
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+.category-separator {
+    margin: 0 11px;
+}
+
+.exhibition-info__row-condition {
+    height: 100px;
+}
+
+.exhibition-comments {
+    width: 100%;
+}
+
+.exhibition-comments__title {
+    color: #5f5f5f;
+}
+
+.comment-item-user {
+    display: flex;
+}
+
+.comment__user-image {
+    width: 70px;
+    height: 70px;
+    background-color: #d9d9d9;
+    border-radius: 50%;
+}
+
+.comment__user-name {
+    display: inline-block;
+    margin: 0 0 0 18px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 30px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.comment__comment {
+    display: block;
+    width: 100%;
+    margin: 19px 0 31px;
+    padding: 25px 15px;
+    background-color: #e5e5e5;
+    font-size: 20px;
+    font-weight: 300;
+    border-radius: 5px;
+}
+
+.comment-form__title {
+    margin: 0;
+    height: 50px;
+    line-height: 50px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.comment-form {
+    width: 100%;
+    height: 394px;
+}
+
+.comment-form__input--text {
+    width: 100%;
+    height: 294px;
+}
+
+.comment-form__input {
+    width: 100%;
+    height: 246px;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.form__error {
+    margin: 5px 0 16px;
+    color: #ff5555;
+}
+
+.comment-form__button-submit {
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    background-color: #ff5555;
+    font-size: 25px;
+    font-weight: 700;
+    color: #ffffff;
+    border: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+}

@@ -20,7 +20,7 @@ class Exhibition extends Model
         'brand',
         'price',
         'description',
-        'image',
+        'img_url',
     ];
 
     public function isPurchased(){

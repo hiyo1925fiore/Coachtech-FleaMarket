@@ -25,6 +25,8 @@ DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
+STRIPE_KEY=your-stripe-key（stripeの公開可能キー）
+STRIPE_SECRET=your-stripe-secret（stripeのシークレットキー）
 ```
 5. アプリケーションキーの作成
 ```

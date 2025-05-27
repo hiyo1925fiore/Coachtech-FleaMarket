@@ -15,8 +15,9 @@ mysql:
 1. `docker-compose exec php bash`
 2. `composer install`
 3. `composer require livewire/livewire`
-4. 「.env.example」ファイルを 「.env」ファイルに命名を変更。または、新しく.envファイルを作成
-5. .envに以下の環境変数を追加
+4. `composer require laravel/cashier`
+5. 「.env.example」ファイルを 「.env」ファイルに命名を変更。または、新しく.envファイルを作成
+6. .envに以下の環境変数を追加
 ```
 DB_CONNECTION=mysql
 DB_HOST=mysql

@@ -1,0 +1,334 @@
+.content {
+    width: 100%;
+    padding: 93px 60px 93px 80px;
+    font-family: "Inter";
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.purchase-form {
+    width: 100%;
+    display: flex;
+}
+
+.purchase-content__left {
+    width: 60%;
+}
+
+.exhibition-info {
+    display: flex;
+    height: 230px;
+    border-bottom: 1px solid #000;
+}
+
+.exhibition-info__image {
+    width: 177.53px;
+    height: 177.53px;
+    margin-right: 55px;
+}
+
+.exhibition-info__name {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 0 20px;
+}
+
+.exhibition-info__price,
+.exhibition-info__yen {
+    line-height: 30px;
+    font-weight: 400;
+}
+
+.exhibition-info__price {
+    font-size: 30px;
+}
+
+.exhibition-info__yen {
+    font-size: 27px;
+}
+
+.payment-select {
+    height: 190px;
+    border-bottom: 1px solid #000;
+}
+
+.purchase__content-title {
+    height: 85px;
+    line-height: 85px;
+    margin: 0;
+    padding-left: 35px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.payment-form__select-inner {
+    padding-left: 96px;
+}
+
+.payment-form__select-label {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+.payment-form__select-label::after {
+    position: absolute;
+    right: 15px;
+    width: 13px;
+    height: 14px;
+    background-color: #7f7f7f;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    content: "";
+    pointer-events: none;
+}
+
+.payment-form__select {
+    appearance: none;
+    width: 265px;
+    height: 31px;
+    padding: 0 5px 0 8px;
+    border: 1px solid #5f5f5f;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #5f5f5f;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.purchase-address {
+    height: 215px;
+    border-bottom: 1px solid #000;
+}
+
+.purchase-address__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.address-edit__link {
+    display: block;
+    width: 115px;
+    font-size: 20px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.purchase-address__text {
+    margin: 0;
+    padding: 0 96px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.purchase-content__right {
+    width: 40%;
+}
+
+.purchase-info {
+    margin: 0 0 0 auto;
+    width: 440px;
+}
+
+.purchase-info__row {
+    height: 115px;
+    border-collapse: collapse;
+    border: 1px solid #000;
+}
+
+.purchase-info__title,
+.purchase-info__price,
+.purchase-info__payment {
+    width: 50%;
+    text-align: center;
+}
+
+.purchase-info__title {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.purchase-info__price,
+.purchase-info__payment {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.purchase-button {
+    display: block;
+    margin: 37px 0 0 auto;
+    width: 440px;
+    height: 60px;
+    background-color: #ff5555;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 850px) {
+    /* 850px以下に適用されるCSS（タブレット用） */
+    .content {
+        width: 100%;
+        padding: 52px 24px 52px 40px;
+    }
+
+    .exhibition-info {
+        display: flex;
+        height: 164px;
+        border-bottom: 1px solid #000;
+    }
+
+    .exhibition-info__image {
+        width: 123px;
+        height: 123px;
+        margin-right: 25px;
+    }
+
+    .exhibition-info__name {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0 0 20px;
+    }
+
+    .exhibition-info__price,
+    .exhibition-info__yen {
+        line-height: 20px;
+        font-weight: 400;
+    }
+
+    .exhibition-info__price {
+        font-size: 20px;
+    }
+
+    .exhibition-info__yen {
+        font-size: 18px;
+    }
+
+    .payment-select {
+        height: 138px;
+        border-bottom: 1px solid #000;
+    }
+
+    .purchase__content-title {
+        height: 52px;
+        line-height: 52px;
+        margin: 0;
+        padding-left: 35px;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .payment-form__select-inner {
+        padding-left: 80px;
+    }
+
+    .payment-form__select-label {
+        display: inline-flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .payment-form__select-label::after {
+        position: absolute;
+        right: 12px;
+        width: 13px;
+        height: 12px;
+        background-color: #7f7f7f;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        content: "";
+        pointer-events: none;
+    }
+
+    .payment-form__select {
+        appearance: none;
+        width: 180px;
+        height: 24px;
+        padding: 0 5px 0 8px;
+        border: 1px solid #5f5f5f;
+        border-radius: 4px;
+        background-color: #fff;
+        color: #5f5f5f;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .purchase-address {
+        height: 183px;
+        border-bottom: 1px solid #000;
+    }
+
+    .purchase-address__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .address-edit__link {
+        display: block;
+        width: 90px;
+        font-size: 16px;
+        font-weight: 400;
+        text-decoration: none;
+    }
+
+    .purchase-address__text {
+        margin: 0;
+        padding: 0 80px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .purchase-info {
+        margin: 0 0 0 auto;
+        width: 240px;
+    }
+
+    .purchase-info__row {
+        height: 80px;
+        border-collapse: collapse;
+        border: 1px solid #000;
+    }
+
+    .purchase-info__title {
+        width: 45%;
+        text-align: center;
+    }
+
+    .purchase-info__price,
+    .purchase-info__payment {
+        width: 55%;
+        text-align: center;
+    }
+
+    .purchase-info__title {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .purchase-info__price {
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .purchase-info__payment {
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    .purchase-button {
+        display: block;
+        margin: 37px 0 0 auto;
+        width: 240px;
+        height: 40px;
+        background-color: #ff5555;
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+    }
+}

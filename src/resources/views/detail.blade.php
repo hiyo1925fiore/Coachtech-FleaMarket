@@ -13,7 +13,7 @@
 <div class="content">
     <div class="detail__content">
         <div class="exhibition-image-area">
-            <img class="exhibition-image" src="{{ asset($exhibition->img_url) }}" alt="{{ $exhibition->name }}">
+            <img class="exhibition-image" src="{{ Storage::url($exhibition->img_url) }}" alt="{{ $exhibition->name }}">
         </div>
         <div class="exhibition-description-area">
             <dl class="exhibition-title">
@@ -39,9 +39,16 @@
                 </div>
             </div>
 
-            <a href="../purchase/:{{$exhibition->id}}" class="purchase-link">
-                購入手続きへ
-            </a>
+            @if($exhibition->isPurchased())
+                <p class="purchase-field__sold">
+                    売り切れ
+                </p>
+            @else
+                <a href="../purchase/:{{$exhibition->id}}" class="purchase-link">
+                    購入手続きへ
+                </a>
+            @endif
+
 
             <dl class="exhibition-description">
                 <dt class="exhibition-description__title">商品説明</dt>
@@ -78,7 +85,7 @@
                     <div class="comment-item-user">
                         @if($comment->user->profile && $comment->user->profile->img_url)
                             <img class="comment__user-image"
-                                src="{{ asset($comment->user->profile->img_url) }}"
+                                src="{{ Storage::url($comment->user->profile->img_url) }}"
                                 alt="{{ $comment->user->name }}">
                         @else
                             <div class="comment__user-image"></div>

@@ -26,4 +26,16 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * 画像URLのアクセサ
+     * 画像がない場合はデフォルト画像を返す
+     */
+    public function getImageUrlAttribute()
+    {
+        if ($this->img_url) {
+            return asset('storage/' . $this->img_url);
+        }
+        return null;
+    }
 }

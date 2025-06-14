@@ -37,17 +37,11 @@
                     </li>
 
                     <li class="header__list-item">
-                        <form action="/mypage" class="header__form" method="get">
-                            @csrf
-                            <button class="header__form--mypage">マイページ</button>
-                        </form>
+                        <a class="header__link--mypage" href="/mypage">マイページ</a>
                     </li>
 
                     <li class="header__list-item">
-                        <form action="/sell" class="header__form" method="get">
-                            @csrf
-                            <button class="header__form--sell">出品</button>
-                        </form>
+                        <a class="header__link--sell" href="/sell">出品</a>
                     </li>
                 </ul>
             </nav>

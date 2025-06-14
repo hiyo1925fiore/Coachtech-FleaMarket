@@ -24,7 +24,7 @@
                     <div class="item-card">
                         <a href="/item/:{{$exhibition->id}}" class="detail-link">
                             <div class="item-image">
-                                <img class="item-card__inner--image" src="{{ asset($exhibition->img_url) }}" alt="{{ $exhibition->name }}">
+                                <img class="item-card__inner--image" src="{{ Storage::url($exhibition->img_url) }}" alt="{{ $exhibition->name }}">
 
                                 @if($exhibition->isPurchased())
                                 <div class="item-card__inner--sold">

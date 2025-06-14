@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-<p>マイページ</p>
+@livewire('mypage-component')
 @endsection

@@ -17,14 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // 支払い方法表示エリアのテキストを更新
             paymentDisplayText.textContent = selectedText;
-
-            // デバッグ用（本番では削除）
-            console.log(
-                "選択された支払い方法:",
-                selectedText,
-                "値:",
-                selectedValue
-            );
         });
 
         // ページ読み込み時に初期値を設定

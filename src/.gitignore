@@ -14,10 +14,11 @@ yarn-error.log
 /.idea
 /.vscode
 
-# storage/app/public/imgは除外しない
+# storage/app/public/img、storage/app/public/profile_imagesは除外しない
 /storage/*
 !/storage/app
 /storage/app/*
 !/storage/app/public
 /storage/app/public/*
 !/storage/app/public/img
+!/storage/app/public/profile_images

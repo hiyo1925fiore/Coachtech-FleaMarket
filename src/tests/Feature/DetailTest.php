@@ -107,7 +107,7 @@ class DetailTest extends TestCase
     }
 
     /**
-     * レスポンスからいいね数を取得するヘルパーメソッド
+     * レスポンスからコメント数を取得するヘルパーメソッド
      * @param \Illuminate\Testing\TestResponse $response
      * @return int
      */

@@ -17,13 +17,10 @@ class ExhibitionsTableSeeder extends Seeder
     {
         // 実際に存在するユーザーIDを取得
         $userIds = User::pluck('id')->toArray();
-        
+
         if (empty($userIds)) {
             throw new \Exception('No users found. Please create users before running ExhibitionsTableSeeder.');
         }
-
-        // ログで確認
-        \Log::info('Available user IDs in seeder: ' . implode(', ', $userIds));
 
         DB::table('exhibitions')->insert([
             [

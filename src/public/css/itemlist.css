@@ -112,6 +112,12 @@
     font-weight: 400;
 }
 
+.no-result__message {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 400;
+}
+
 @media screen and (max-width: 850px) {
     /* 850px以下に適用されるCSS（タブレット用） */
     .itemlist__tab-nav {
@@ -209,5 +215,9 @@
         margin: 0px;
         font-size: 14px;
         font-weight: 400;
+    }
+
+    .no-result__message {
+        font-size: 14px;
     }
 }

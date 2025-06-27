@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 use App\Models\Exhibition;
 use App\Models\Favorite;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class FavoriteController extends Controller
 {
     public function toggleFavorite(Request $request, $exhibition_id)
     {
         $exhibition = Exhibition::with('categories')->find($exhibition_id);
+
         $user = Auth::user();
 
         // 既にいいねしているかチェック

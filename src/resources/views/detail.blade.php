@@ -26,16 +26,17 @@
 
             <div class="exhibition-actions">
                 <div class="exhibition-actions__item">
-                    <button class="favorite-button {{ $isFavorited ? 'favorited' : '' }}" data-exhibition-id="{{ $exhibition->id }}" data-favorited="{{ $isFavorited ? 'true' : 'false' }}">
+                    <button class="favorite-button" data-exhibition-id={{ $exhibition->id }} data-favorited="{{ $isFavorited ? 'true' : 'false' }}">
                         <img class="favorite-icon"
                             src="{{ asset('image/星アイコン8.png') }}"
                             alt="{{ $isFavorited ? 'いいね済み' : 'いいね' }}">
+                        <span class="favorite-star {{ $isFavorited ? 'favorited' : '' }}">★</span>
+                        <p class="exhibition-actions__count-favorite">{{ $favoriteCount }}</p>
                     </button>
-                    <p class="exhibition-actions__count-text">{{$favoriteCount}}</p>
                 </div>
                 <div class="exhibition-actions__item">
                     <img class="comment-icon" src="{{asset('image/ふきだしのアイコン.png')}}" alt="コメント">
-                    <p class="exhibition-actions__count-text">{{ $comments->count() }}</p>
+                    <p class="exhibition-actions__count-comment">{{ $comments->count() }}</p>
                 </div>
             </div>
 
@@ -118,5 +119,6 @@
 </div>
 
 <!-- JavaScriptファイルを読み込み -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset('js/favorite.js') }}"></script>
 @endsection

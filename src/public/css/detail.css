@@ -89,22 +89,22 @@
 
 .favorite-button {
     width: 40px;
-    height: 40px;
+    height: 66px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
     position: relative;
-    display: flex; /* 追加 */
-    align-items: center; /* 追加 */
-    justify-content: center; /* 追加 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .favorite-icon,
 .comment-icon {
     width: 40px;
     height: 40px;
-    display: block; /* 追加 */
+    display: block;
 }
 
 .favorite-icon {
@@ -114,26 +114,46 @@
     z-index: 2;
 }
 
-.favorite-button::before {
-    content: "★";
+/* 星アイコンのスタイル */
+.favorite-star {
+    font-size: 38px;
+    color: #fff;
+    transition: color 0.3s ease;
     position: absolute;
-    top: -3px;
-    left: 0;
-    width: 40px;
-    height: 40px;
-    font-size: 40px;
-    color: transparent;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    top: -15%;
+    left: 2%;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.favorite-button.favorited {
-    background-color: #ffd700;
+/* いいね済みの状態 */
+.favorite-star.favorited {
+    color: #ffd700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.exhibition-actions__count-text {
+/* ホバー時のエフェクト */
+.favorite-button:hover .favorite-star {
+    color: #fff;
+}
+
+.favorite-button:hover .favorite-star.favorited {
+    color: #ffc107;
+}
+
+.exhibition-actions__count-favorite {
+    margin: 4px 0 0 0;
+    height: 22px;
+    position: absolute;
+    top: 60%;
+    left: 40%;
+    line-height: 22px;
+    font-family: "Inter";
+    font-size: 18px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.exhibition-actions__count-comment {
     margin: 4px 0 0 0;
     height: 22px;
     line-height: 22px;
@@ -223,7 +243,7 @@
 
 .exhibition-info__inner-title {
     width: 35%;
-    font-size: 14px;
+    font-size: 24px;
     font-weight: 700;
     color: #000000;
 }
@@ -231,7 +251,7 @@
 .exhibition-info__categories,
 .exhibition-info__condition {
     width: 65%;
-    font-size: 12px;
+    font-size: 20px;
     font-weight: 400;
     color: #000000;
 }
@@ -240,13 +260,17 @@
     flex-wrap: wrap;
 }
 
+.exhibition-info__condition {
+    padding-left: 20px;
+}
+
 .category-tag {
     display: inline-block;
     background-color: #d9d9d9;
     color: #000000;
     margin: 5px 0;
-    padding: 4px 12px;
-    font-size: 12px;
+    padding: 4px 20px;
+    font-size: 20px;
     border-radius: 15px;
 }
 
@@ -394,7 +418,7 @@
         margin-left: 24px;
         width: 72px;
         height: 54px;
-        align-items: center; /* 追加: 垂直方向の中央揃え */
+        align-items: center;
         justify-content: space-between;
     }
 
@@ -404,27 +428,26 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center; /* 追加: 垂直方向の中央揃え */
+        justify-content: center;
     }
 
     .favorite-button {
         width: 24px;
-        height: 24px;
+        height: 44px;
         background: none;
         border: none;
         cursor: pointer;
         padding: 0;
         position: relative;
-        display: flex; /* 追加 */
-        align-items: center; /* 追加 */
-        justify-content: center; /* 追加 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .favorite-icon,
     .comment-icon {
         width: 24px;
         height: 24px;
-        display: block; /* 追加 */
     }
 
     .favorite-icon {
@@ -434,26 +457,45 @@
         z-index: 2;
     }
 
-    .favorite-button::before {
-        content: "★";
-        position: absolute;
-        top: -3px;
-        left: 0;
-        width: 24px;
-        height: 24px;
+    .favorite-star {
         font-size: 24px;
-        color: transparent;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        color: #fff;
+        transition: color 0.3s ease;
+        position: absolute;
+        top: -16%;
+        left: 2%;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
 
-    .favorite-button.favorited {
-        background-color: #ffd700;
+    /* いいね済みの状態 */
+    .favorite-star.favorited {
+        color: #ffd700;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
 
-    .exhibition-actions__count-text {
+    /* ホバー時のエフェクト */
+    .favorite-button:hover .favorite-star {
+        color: #fff;
+    }
+
+    .favorite-button:hover .favorite-star.favorited {
+        color: #ffc107;
+    }
+
+    .exhibition-actions__count-favorite {
+        margin: 2px 0 0 0;
+        height: 16px;
+        position: absolute;
+        top: 60%;
+        left: 40%;
+        line-height: 16px;
+        font-family: "Inter";
+        font-size: 12px;
+        font-weight: 700;
+        color: #000000;
+    }
+
+    .exhibition-actions__count-comment {
         margin: 4px 0 0 0;
         height: 16px;
         line-height: 16px;

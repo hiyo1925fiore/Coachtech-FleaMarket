@@ -1,69 +1,76 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // CSRFトークンの設定
-    const token = document
-        .querySelector('meta[name="csrf-token"]')
-        .getAttribute("content");
+$(document).ready(function () {
+    // CSRFトークンを設定
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+    });
 
-    // いいねボタンの処理
-    const favoriteBtn = document.querySelector(".favorite-button");
+    // いいねボタンのクリックイベント
+    $(".favorite-button").on("click", function (e) {
+        e.preventDefault();
 
-    if (favoriteBtn) {
-        favoriteBtn.addEventListener("click", function (e) {
-            e.preventDefault(); // デフォルトの動作を防ぐ
+        var button = $(this);
+        var exhibitionId = button.data("exhibition-id");
+        var isFavorited = button.data("favorited") === "true";
 
-            const exhibitionId = this.getAttribute("data-exhibition-id");
-            const isFavorited = this.getAttribute("data-favorited") === "true";
+        // ボタンを一時的に無効化
+        button.prop("disabled", true);
 
-            // Ajax通信
-            fetch(`/item/:{$exhibitionId}/favorite`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": token,
-                    Accept: "application/json",
-                },
-                body: JSON.stringify({}),
-            })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error(
-                            `HTTP error! status: ${response.status}`
-                        );
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    if (data.error) {
-                        alert(data.error);
-                        return;
-                    }
+        $.ajax({
+            url: "/item/:" + exhibitionId + "/favorite",
+            method: "POST",
+            data: {
+                _token: $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                // データ属性を更新
+                button.data("favorited", response.isFavorited);
 
-                    // アイコンの更新
-                    const favoriteIcon = this.querySelector(".favorite-icon");
-                    const favoriteCount =
-                        document.querySelector(".favorite-count");
+                // 星の色を変更
+                var star = button.find(".favorite-star");
+                if (response.isFavorited) {
+                    star.addClass("favorited");
+                } else {
+                    star.removeClass("favorited");
+                }
 
-                    if (data.isFavorited) {
-                        // いいね済みの状態
-                        favoriteIcon.alt = "いいね済み";
-                        this.setAttribute("data-favorited", "true");
-                        this.classList.add("favorited");
-                    } else {
-                        // いいねしていない状態
-                        favoriteIcon.alt = "いいね";
-                        this.setAttribute("data-favorited", "false");
-                        this.classList.remove("favorited");
-                    }
+                // いいね数を更新
+                button
+                    .find(".exhibition-actions__count-favorite")
+                    .text(response.favoriteCount);
 
-                    // いいね数の更新
-                    if (favoriteCount) {
-                        favoriteCount.textContent = data.favoriteCount;
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                    alert("エラーが発生しました。もう一度お試しください。");
-                });
+                // 簡単なアニメーション効果
+                star.addClass("pulse");
+                setTimeout(function () {
+                    star.removeClass("pulse");
+                }, 300);
+            },
+            error: function (xhr, status, error) {
+                console.error("エラー:", error);
+                alert("エラーが発生しました。もう一度お試しください。");
+            },
+            complete: function () {
+                // ボタンを有効化
+                button.prop("disabled", false);
+            },
         });
-    }
+    });
 });
+
+// パルスアニメーション用のCSS（動的に適用）
+$("<style>")
+    .text(
+        `
+    .favorite-star.pulse {
+        animation: pulse 0.3s ease-in-out;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+`
+    )
+    .appendTo("head");

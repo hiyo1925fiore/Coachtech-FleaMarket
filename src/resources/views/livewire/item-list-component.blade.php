@@ -40,9 +40,9 @@
         @else
             <div class="no-results">
                 @if(!empty($searchTerm))
-                    <p>「{{ $searchTerm }}」に一致する商品が見つかりませんでした。</p>
+                    <p class="no-result__message">「{{ $searchTerm }}」に一致する商品が見つかりませんでした</p>
                 @else
-                    <p>表示する商品がありません</p>
+                    <p class="no-result__message">表示する商品がありません</p>
                 @endif
             </div>
         @endif

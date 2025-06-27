@@ -1,0 +1,358 @@
+.content {
+    font-family: "Inter";
+    font-optical-sizing: auto;
+    font-style: normal;
+    padding: 51px 0;
+}
+
+.exhibition-form__heading-title {
+    margin: 0;
+    text-align: center;
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.exhibition-form {
+    width: 44%;
+    margin: 43px auto 20px;
+}
+
+.exhibition-form__image-label,
+.exhibition-form__categories-title {
+    display: block;
+    height: 36px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.exhibition-form_image-preview-container {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #5f5f5f;
+}
+
+.image-preview {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #5f5f5f;
+}
+
+.exhibition-form__file-select-button {
+    display: block;
+    margin: 20px auto 0;
+    text-align: center;
+    width: 165px;
+    height: 43.46px;
+    line-height: 43.46px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ff5655;
+    border: 2px solid #ff5555;
+    border-radius: 10px;
+}
+
+.exhibition-form__section-title {
+    display: block;
+    margin: 70px 0 36px 0;
+    height: 48px;
+    font-size: 30px;
+    font-weight: 700;
+    color: #5f5f5f;
+    border-bottom: 1px solid #5f5f5f;
+}
+
+.form__group--categories {
+    width: 100%;
+    margin-bottom: 65px;
+}
+
+.exhibition-form__category-inputs {
+    margin-top: 31px;
+    height: 199px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.exhibition-form__category-option {
+    margin-left: 12px;
+    height: 32px;
+}
+
+.exhibition-form__category-label {
+    height: 32px;
+    padding: 0 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(217, 217, 217, 0);
+    color: #ff5655;
+    border: 2px solid #ff5655;
+    border-radius: 200px;
+    cursor: pointer;
+}
+
+.exhibition-form__category-input {
+    appearance: none;
+    display: none;
+}
+
+.exhibition-form__category-input:checked + .exhibition-form__category-label {
+    background-color: #ff5655;
+    color: #fff;
+}
+
+.exhibition-form__category-text {
+    font-size: 15px;
+}
+
+.form__error {
+    margin: 5px 0 16px;
+    color: #ff5555;
+}
+
+.exhibition-form__label {
+    display: block;
+    margin-bottom: 8px;
+    height: 29px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.exhibition-form__select-inner,
+.exhibition-form__select-label,
+.exhibition-form__select {
+    width: 100%;
+}
+
+.exhibition-form__select-inner {
+    margin-top: 19px;
+}
+
+.exhibition-form__select-label {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+.exhibition-form__select-label::after {
+    position: absolute;
+    right: 20px;
+    width: 18px;
+    height: 20px;
+    background-color: #7f7f7f;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    content: "";
+    pointer-events: none;
+}
+
+.exhibition-form__select {
+    appearance: none;
+    height: 45px;
+    padding: 0 5px 0 15px;
+    border: 1px solid #5f5f5f;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #5f5f5f;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.exhibition-form__input,
+.exhibition-form__textarea,
+.exhibition-form__price-input {
+    margin-bottom: 20px;
+    width: 100%;
+    height: 45px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.exhibition-form__input,
+.exhibition-form__price-input {
+    height: 45px;
+}
+
+.exhibition-form__textarea {
+    height: 125px;
+}
+
+.price-input-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.price-input-container::before {
+    content: "¥";
+    position: absolute;
+    left: 12px;
+    top: 30%;
+    transform: translateY(-50%);
+    color: #000000;
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.exhibition-form__price-input {
+    padding-left: 32px;
+}
+
+.form__button {
+    width: 100%;
+    margin-top: 41px;
+}
+
+.form__button-submit {
+    width: 100%;
+    height: 60px;
+    background-color: #ff5555;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 850px) {
+    /* 850px以下に適用されるCSS（タブレット用） */
+    .content {
+        padding: 34px 0;
+    }
+
+    .exhibition-form__heading-title {
+        font-size: 24px;
+    }
+
+    .exhibition-form {
+        margin: 29px auto 15px;
+    }
+
+    .exhibition-form__image-label,
+    .exhibition-form__categories-title {
+        height: 24px;
+        font-size: 16px;
+    }
+
+    .exhibition-form_image-preview-container {
+        height: 100px;
+    }
+
+    .image-preview {
+        width: 100px;
+        height: 100px;
+    }
+
+    .exhibition-form__file-select-button {
+        margin: 15px auto 0;
+        width: 110px;
+        height: 29.45px;
+        line-height: 29.45px;
+        font-size: 12px;
+    }
+
+    .exhibition-form__section-title {
+        margin: 47px 0 24px 0;
+        height: 32px;
+        font-size: 20px;
+    }
+
+    .form__group--categories {
+        margin-bottom: 44px;
+    }
+
+    .exhibition-form__category-inputs {
+        margin-top: 20px;
+        height: 133px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .exhibition-form__category-option {
+        margin-left: 8px;
+        height: 21px;
+    }
+
+    .exhibition-form__category-label {
+        height: 21px;
+        padding: 0 9px;
+    }
+
+    .exhibition-form__category-text {
+        font-size: 10px;
+    }
+
+    .form__error {
+        margin: 3px 0 11px;
+    }
+
+    .exhibition-form__label {
+        margin-bottom: 5px;
+        height: 20px;
+        font-size: 16px;
+    }
+
+    .exhibition-form__select-inner {
+        margin-top: 13px;
+    }
+
+    .exhibition-form__select-label::after {
+        position: absolute;
+        right: 13px;
+        width: 12px;
+        height: 13px;
+    }
+
+    .exhibition-form__select {
+        height: 30px;
+        padding: 0 3px 0 10px;
+        font-size: 10px;
+    }
+
+    .exhibition-form__input,
+    .exhibition-form__textarea,
+    .exhibition-form__price-input {
+        margin-bottom: 13px;
+        height: 30px;
+        font-size: 14px;
+    }
+
+    .exhibition-form__input,
+    .exhibition-form__price-input {
+        height: 30px;
+    }
+
+    .exhibition-form__textarea {
+        height: 85px;
+    }
+
+    .price-input-container::before {
+        content: "¥";
+        position: absolute;
+        left: 8px;
+        top: 35%;
+        transform: translateY(-50%);
+        color: #000000;
+        font-size: 14px;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .exhibition-form__price-input {
+        padding-left: 20px;
+    }
+
+    .form__button {
+        margin-top: 28px;
+    }
+
+    .form__button-submit {
+        height: 40px;
+        font-size: 17px;
+    }
+}

@@ -15,7 +15,13 @@
         @method('PUT')
         <div class="profile-image-section">
             <div class="profile-form__image-upload-container">
-                <div class="profile-form_image-preview-container" id="image-preview-container"></div>
+                <div class="profile-form__image-preview-container" id="image-preview-container">
+                @if(isset($profile->img_url) && $profile->img_url)
+                        <img src="{{ asset('storage/' . $profile->img_url) }}" alt="プロフィール画像" class="profile-preview-image" id="preview-image">
+                    @else
+                        <div class="profile-placeholder-circle" id="placeholder-circle"></div>
+                    @endif
+                </div>
 
                 <div class="profile-form__file-input-wrapper">
                     <input class="profile-form__file" type="file" name="img_url" id="img_url" style="display: none;" accept="image/*">

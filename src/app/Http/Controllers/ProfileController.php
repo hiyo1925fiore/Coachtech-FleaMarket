@@ -25,20 +25,27 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
+        // 既存の画像ファイル名を保存
+        $oldImageName = $user->profile_image;
+
         // ユーザー名を更新
         $user->update([
             'name' => $request->name
         ]);
 
-        // 画像のアップロード処理
+        // 画像がアップロードされた場合の処理
         $imgUrl = null;
         if ($request->hasFile('img_url')) {
-            // 既存の画像があれば削除
-            if ($user->profile && $user->profile->img_url) {
-                Storage::disk('public')->delete($user->profile->img_url);
+            // 既存の画像ファイルを削除
+            if ($oldImageName && Storage::disk('public')->exists('profile_images/' . $oldImageName)) {
+                Storage::disk('public')->delete('profile_images/' . $oldImageName);
             }
 
-            $imgUrl = $request->file('img_url')->store('profile_images', 'public');
+            // 新しい画像を保存
+            $image = $request->file('img_url');
+            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('profile_images', $imageName, 'public');
+            $imgUrl =  'profile_images/'. $imageName;
         } elseif ($user->profile) {
             $imgUrl = $user->profile->img_url;
         }
@@ -54,6 +61,6 @@ class ProfileController extends Controller
             ]
         );
 
-        return redirect()->route('mypage');
+        return redirect()->route('itemlist',['page' => 'mylist']);
     }
 }

@@ -62,6 +62,7 @@ class ExhibitionController extends Controller
             'seller_id' => $id,
             'condition_id' => $request->condition_id,
             'name' => $request->name,
+            'brand' => $request->brand,
             'price' => $request->price,
             'img_url' =>$imagePath ?? null,
             'description' => $request->description,

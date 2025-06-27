@@ -1,6 +1,6 @@
 <div  class="container">
     <div class="mypage__info">
-        @if($profile->img_url === null)
+        @if($profile->img_url === "")
             <div class="mypage__user-image--none"></div>
         @else
             <img class="mypage__user-image" src="{{ Storage::url($profile->img_url) }}" alt="{{ $user->name }}">
@@ -11,21 +11,21 @@
 
     <div class="mypage__tab-nav">
         <div class="tab-buttons">
-            <button
-                wire:click="selectTab('sell')"
-                class="tab-btn {{ $activeTab === 'sell' ? 'active' : '' }}">
+            <a
+                href="{{ route('mypage') }}?page=sell"
+                class="tab-btn{{ $activeTab === 'sell' ? '--active' : '' }}">
                 出品した商品
-            </button>
-            <button
-                wire:click="selectTab('buy')"
-                class="tab-btn {{ $activeTab === 'buy' ? 'active' : '' }}">
+            </a>
+            <a
+                href="{{ route('mypage') }}?page=buy"
+                class="tab-btn{{ $activeTab === 'buy' ? '--active' : '' }}">
                 購入した商品
-            </button>
+            </a>
         </div>
 
         <div class="tab-content">
             @if($activeTab === 'sell')
-                <div class="products-grid">
+                <div class="items-grid">
                     @forelse($exhibitions as $exhibition)
                     <div class="item-card">
                         <a href="/item/:{{$exhibition->id}}" class="detail-link">
@@ -43,12 +43,11 @@
                     </div>
                     @empty
                         <div class="no-products">
-                            <p>出品した商品がありません</p>
                         </div>
                     @endforelse
                 </div>
             @elseif($activeTab === 'buy')
-                <div class="products-grid">
+                <div class="items-grid">
                     @forelse($purchasedExhibitions as $exhibition)
                     <div class="item-card">
                         <a href="/item/:{{$exhibition->id}}" class="detail-link">
@@ -66,13 +65,12 @@
                     </div>
                     @empty
                         <div class="no-products">
-                            <p>購入した商品がありません</p>
                         </div>
                     @endforelse
                 </div>
             @else
                 <div class="no-tab-selected">
-                    <p>タブを選択して商品を表示してください</p>
+                    <p class="no-tab-selected--text">タブを選択して商品を表示してください</p>
                 </div>
             @endif
         </div>

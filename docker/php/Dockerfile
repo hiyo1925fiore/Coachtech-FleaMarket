@@ -10,4 +10,10 @@ RUN curl -sS https://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer \
   && composer self-update
 
+RUN apt-get update && \
+  apt-get install -y locales && \
+  echo "ja_JP UTF-8" > /etc/locale.gen && \
+  locale-gen && \
+  echo "export LANG=ja_JP.UTF-8" >> ~/.bashrc
+
 WORKDIR /var/www

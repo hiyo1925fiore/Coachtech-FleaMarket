@@ -20,32 +20,30 @@ class MypageComponent extends Component
     {
         $this->user = Auth::user();
 
-        // URLパラメータからタブを取得（token等の不要パラメータは無視）
+        // URLパラメータからタブを取得（取得可能な値は'sell', 'buy'のみ）
         $allowedTabs = ['sell', 'buy'];
-        $requestedTab = request()->get('tab');
+        $requestedTab = request()->get('page');
         $this->activeTab = in_array($requestedTab, $allowedTabs) ? $requestedTab : null;
-        
-        // ユーザープロフィールを取得
-        $this->profile = Profile::where('user_id', Auth::id())->first();
-        
+
         // 初期ロード時にタブが指定されている場合はデータを取得
         if ($this->activeTab) {
             $this->loadTabData();
         }
-        
+
         // 初回アクセス時にURLをクリーンアップ
         if (!$this->activeTab) {
             $this->emit('cleanUrl');
         }
+
+        // ユーザープロフィールを取得
+        $this->profile = Profile::where('user_id', Auth::id())->first();
     }
 
+    // タブが変更された時にデータを読み込む（現在は使用しない）
     public function selectTab($tab)
     {
-        $this->activeTab = $tab;
-        $this->loadTabData();
-        
-        // URLを更新（ページリロードせずに）
-        $this->emit('updateUrl', $tab);
+        // この関数は使用しないが、既存の呼び出しがある場合のために残しておく
+        // 実際のタブ切り替えはaタグのリンクで行う
     }
 
     private function loadTabData()
@@ -60,9 +58,9 @@ class MypageComponent extends Component
             $purchases = Purchase::where('user_id', Auth::id())
                 ->orderBy('created_at', 'desc')
                 ->get();
-            
+
             $exhibitionIds = $purchases->pluck('exhibition_id');
-            
+
             // purchasesの順序を保持して商品を取得
             $this->purchasedExhibitions = [];
             foreach ($purchases as $purchase) {

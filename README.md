@@ -45,14 +45,11 @@ php artisan db:seed
 php artisan storage:link
 ```
 ## userのログイン用初期データ
-```
 - メールアドレス: hoge1@example.com
 -パスワード: hoge1234
-```
-```
+
 - メールアドレス: hoge2@example.com
 - パスワード: hoge5678
-```
 ## 使用技術（実行環境）
 - PHP 8.4.1
 - Laravel 8.83.8

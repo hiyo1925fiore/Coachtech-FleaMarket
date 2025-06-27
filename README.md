@@ -46,7 +46,7 @@ php artisan storage:link
 ```
 ## userのログイン用初期データ
 - メールアドレス: hoge1@example.com
--パスワード: hoge1234
+- パスワード: hoge1234
 
 - メールアドレス: hoge2@example.com
 - パスワード: hoge5678

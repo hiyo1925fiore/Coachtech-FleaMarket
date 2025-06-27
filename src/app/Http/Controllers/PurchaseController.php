@@ -17,7 +17,7 @@ class PurchaseController extends Controller
 
         // セッションから配送先情報を取得、なければprofilesテーブルから初期値を設定
         if (!session('shipping_address')) {
-            $profile = $user->profile; // User と Profile の関係を前提
+            $profile = $user->profile;
             session([
                 'shipping_address' => [
                     'post_code' => $profile->post_code ?? '',

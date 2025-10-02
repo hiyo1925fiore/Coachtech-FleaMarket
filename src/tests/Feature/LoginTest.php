@@ -162,7 +162,7 @@ class LoginTest extends TestCase
 
     /**
      * テストケース2: ログイン機能
-     * 存在するメールアドレスで間違ったパスワードを入力した場合、、バリデーションメッセージが表示される
+     * 存在するメールアドレスで間違ったパスワードを入力した場合、バリデーションメッセージが表示される
      */
     public function test_login_fails_with_wrong_password()
     {

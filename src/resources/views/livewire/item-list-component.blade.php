@@ -2,15 +2,15 @@
     {{-- resources/views/livewire/itemlist-component.blade.php --}}
     <div class="itemlist__tab-nav">
         <a
-            href="/"
-            wire:navigate
+            href="javascript:void(0)"
+            wire:click="changeTab('recommended')"
             class="{{ $activeTab === 'recommended' ? 'nav-item--active' : 'nav-item' }}"
         >
             おすすめ
         </a>
         <a
-            href="/?page=mylist"
-            wire:navigate
+            href="javascript:void(0)"
+            wire:click="changeTab('mylist')"
             class="{{ $activeTab === 'mylist' ? 'nav-item--active' : 'nav-item' }}"
         >
             マイリスト
@@ -48,3 +48,9 @@
         @endif
     </div>
 </div>
+
+<script>
+    window.addEventListener('update-url', event => {
+        window.history.pushState({}, '', event.detail.url);
+    });
+</script>

@@ -8,6 +8,12 @@ class ItemSearchComponent extends Component
 {
     public $searchTerm = '';
 
+    public function mount()
+    {
+        // URLから検索ワードを取得（ページリロード時に保持）
+        $this->searchTerm = request()->input('searchTerm', '');
+    }
+
     // 検索実行時のイベント
     public function search()
     {

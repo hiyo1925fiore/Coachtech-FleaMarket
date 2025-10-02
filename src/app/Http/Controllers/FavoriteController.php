@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Exhibition;
 use App\Models\Favorite;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class FavoriteController extends Controller
 {

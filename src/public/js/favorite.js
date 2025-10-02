@@ -47,8 +47,13 @@ $(document).ready(function () {
                 }, 300);
             },
             error: function (xhr, status, error) {
-                console.error("エラー:", error);
-                alert("エラーが発生しました。もう一度お試しください。");
+                // 401エラー（未認証）の場合、ログインページにリダイレクト
+                if (xhr.status === 401) {
+                    window.location.href = "/login";
+                } else {
+                    console.error("エラー:", error);
+                    alert("エラーが発生しました。もう一度お試しください。");
+                }
             },
             complete: function () {
                 // ボタンを有効化

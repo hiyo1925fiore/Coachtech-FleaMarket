@@ -6,7 +6,6 @@ use Livewire\Component;
 use App\Models\Exhibition;
 use App\Models\Favorite;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 
 class ItemListComponent extends Component
 {
@@ -23,20 +22,24 @@ class ItemListComponent extends Component
         // URLパラメータから初期タブを設定
         $this->activeTab = request()->input('page') === 'mylist' ? 'mylist' : 'recommended';
 
-        $this->loadRecommendedExhibitions();
-        $this->loadMyListExhibitions();
+        // URLから検索ワードを取得（ページリロード時に保持）
+        $this->searchTerm = request()->input('searchTerm', '');
+
+        $this->loadExhibitions();
     }
 
     // 検索語が変更された時に呼ばれるメソッド
     public function updateSearchTerm($term)
     {
         $this->searchTerm = $term;
-        $this->loadRecommendedExhibitions();
-        $this->loadMyListExhibitions();
+        $this->loadExhibitions();
+
+        // 検索後にURLを更新
+        $this->updateUrl();
     }
 
-    // エンターキーが押されたときに実行される検索メソッド
-    public function performSearch()
+    // おすすめ商品とマイリスト商品をロードする
+    public function loadExhibitions()
     {
         $this->loadRecommendedExhibitions();
         $this->loadMyListExhibitions();
@@ -45,9 +48,7 @@ class ItemListComponent extends Component
     public function loadRecommendedExhibitions()
     {
         // おすすめ商品の取得ロジック
-        $id=Auth::id();
-
-        $query = Exhibition::where('seller_id', '<>', $id)
+        $query = Exhibition::where('seller_id', '<>', Auth::id())
             ->with(['purchase']);
 
         // 検索ワードが入力されている場合のみ検索結果を反映する
@@ -61,9 +62,7 @@ class ItemListComponent extends Component
     public function loadMyListExhibitions()
     {
         // マイリスト商品の取得ロジック
-        $id=Auth::id();
-
-        $favoriteExhibitionIds = Favorite::where('user_id', $id)
+        $favoriteExhibitionIds = Favorite::where('user_id', Auth::id())
             ->pluck('exhibition_id')
             ->toArray();
 
@@ -82,12 +81,27 @@ class ItemListComponent extends Component
     {
         $this->activeTab = $tab;
 
-        // URLを動的に更新
-        if ($tab === 'recommended') {
-            return redirect('/');
-        } else {
-            return redirect('/?page=mylist');
+        // URLを更新
+        $this->updateUrl();
+    }
+
+    // URLを更新するメソッド
+    private function updateUrl()
+    {
+        $params = [];
+
+        if ($this->activeTab === 'mylist') {
+            $params['page'] = 'mylist';
         }
+
+        if (!empty($this->searchTerm)) {
+            $params['searchTerm'] = $this->searchTerm;
+        }
+
+        $url = empty($params) ? '/' : '/?' . http_build_query($params);
+
+        // JavaScriptを使ってURLを更新（ページリロードなし）
+        $this->dispatchBrowserEvent('update-url', ['url' => $url]);
     }
 
     public function render()

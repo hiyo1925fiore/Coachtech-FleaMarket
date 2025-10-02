@@ -26,7 +26,7 @@ class PurchaseFactory extends Factory
         return [
             'user_id' => User::factory(),
             'exhibition_id' => Exhibition::factory(),
-            'payment' => $this->faker->numberBetween(1, 2), // 1: コンビニ払い, 2: カード支払い
+            'payment' => $this->faker->numberBetween(1, 2), // 1: コンビニ支払い, 2: カード支払い
             'post_code' => $this->faker->regexify('[0-9]{3}-[0-9]{4}'),
             'address' => $this->faker->prefecture() . $this->faker->city() . $this->faker->streetAddress(),
             'building' => $this->faker->optional()->secondaryAddress(),

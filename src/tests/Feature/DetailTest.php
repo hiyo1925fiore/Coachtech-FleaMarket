@@ -6,18 +6,12 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Category;
-use App\Models\Condition;
 use App\Models\Exhibition;
-use App\Models\Purchase;
 use App\Models\Favorite;
 use App\Models\Comment;
-use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\CategoriesTableSeeder;
 use Database\Seeders\ConditionsTableSeeder;
-use Database\Seeders\ExhibitionsTableSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class DetailTest extends TestCase
@@ -41,9 +35,6 @@ class DetailTest extends TestCase
         DB::statement('ALTER TABLE exhibitions AUTO_INCREMENT = 1');
         DB::statement('ALTER TABLE favorites AUTO_INCREMENT = 1');
         DB::statement('ALTER TABLE comments AUTO_INCREMENT = 1');
-
-        // テスト用ストレージの設定
-        Storage::fake('public');
 
         // シーダー実行
         $this->seed(CategoriesTableSeeder::class);
@@ -329,6 +320,10 @@ class DetailTest extends TestCase
         $afterFavoriteResponse->assertSee('favorite-star favorited');
     }
 
+    /**
+     * テストケース8: いいね機能
+     * 再度いいねアイコンを押下することによって、いいねを解除することができる
+     */
     public function test_favorite_icon_changes_back_when_unfavorited()
     {
         // ユーザーと商品を作成

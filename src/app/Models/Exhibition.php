@@ -57,4 +57,14 @@ class Exhibition extends Model
     {
         return $this->belongsToMany(Category::class, 'category_exhibition', 'exhibition_id', 'category_id')->withTimestamps();
     }
+
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
+    public function chats()
+    {
+        return $this->hasMany(Chat::class);
+    }
 }

@@ -42,7 +42,7 @@ class ExhibitionsTableSeeder extends Seeder
                 'img_url' => 'img/HDD.jpg',
             ],
             [
-                'seller_id' => count($userIds) > 1 ? $userIds[1] : $userIds[0],
+                'seller_id' => $userIds[0],
                 'condition_id' => '3',
                 'name' => '玉ねぎ3束',
                 'brand' => 'コーチ農園',
@@ -51,7 +51,7 @@ class ExhibitionsTableSeeder extends Seeder
                 'img_url' => 'img/onions.jpg',
             ],
             [
-                'seller_id' => count($userIds) > 1 ? $userIds[1] : $userIds[0],
+                'seller_id' => $userIds[0],
                 'condition_id' => '4',
                 'name' => '革靴',
                 'brand' => '',
@@ -60,7 +60,7 @@ class ExhibitionsTableSeeder extends Seeder
                 'img_url' => 'img/leather-shoes.jpg',
             ],
             [
-                'seller_id' => count($userIds) > 1 ? $userIds[1] : $userIds[0],
+                'seller_id' => $userIds[0],
                 'condition_id' => '1',
                 'name' => 'ノートPC',
                 'brand' => '',
@@ -69,7 +69,7 @@ class ExhibitionsTableSeeder extends Seeder
                 'img_url' => 'img/laptop.jpg',
             ],
             [
-                'seller_id' => $userIds[0],
+                'seller_id' => count($userIds) > 1 ? $userIds[1] : $userIds[0],
                 'condition_id' => '2',
                 'name' => 'マイク',
                 'brand' => '',
@@ -87,7 +87,7 @@ class ExhibitionsTableSeeder extends Seeder
                 'img_url' => 'img/shoulder-bag.jpg',
             ],
             [
-                'seller_id' => $userIds[0],
+                'seller_id' => count($userIds) > 1 ? $userIds[1] : $userIds[0],
                 'condition_id' => '4',
                 'name' => 'タンブラー',
                 'brand' => '',

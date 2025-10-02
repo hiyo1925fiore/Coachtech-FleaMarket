@@ -28,9 +28,9 @@
                 <div class="payment-form__select-inner">
                     <label class="payment-form__select-label">
                         <select class="payment-form__select" name="payment" id="">
-                            <option disabled selected>選択してください</option>
-                            <option value="1" {{ old('payment') }}>コンビニ支払い</option>
-                            <option value="2" {{ old('payment') }}>カード支払い</option>
+                            <option disabled {{ old('payment') ? '' : 'selected' }}>選択してください</option>
+                            <option value="1" {{ old('payment') == '1' ? 'selected' : '' }}>コンビニ支払い</option>
+                            <option value="2" {{ old('payment') == '2' ? 'selected' : '' }}>カード支払い</option>
                         </select>
                     </label>
                 </div>

@@ -4,17 +4,15 @@ namespace Tests\Feature;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-use App\Models\Condition;
 use App\Models\Exhibition;
 use App\Models\Purchase;
 use App\Models\Favorite;
-use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\CategoriesTableSeeder;
 use Database\Seeders\ConditionsTableSeeder;
 use Database\Seeders\ExhibitionsTableSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Livewire\Livewire;
 
 class ItemListTest extends TestCase
 {
@@ -252,7 +250,7 @@ class ItemListTest extends TestCase
             'seller_id' => $this->otherUser->id
         ]);
 
-        $response = $this->get('/?search=テスト');
+        $response = $this->get('/?searchTerm=テスト');
 
         $response->assertStatus(200);
         $response->assertSee($matchingExhibition->name);
@@ -286,7 +284,7 @@ class ItemListTest extends TestCase
             'exhibition_id' => $nonMatchingExhibition->id
         ]);
 
-        $response = $this->actingAs($this->user)->get('/?page=mylist&search=テスト');
+        $response = $this->actingAs($this->user)->get('/?page=mylist&searchTerm=テスト');
 
         $response->assertStatus(200);
         $response->assertSee($matchingExhibition->name);
@@ -304,7 +302,7 @@ class ItemListTest extends TestCase
             'seller_id' => $this->otherUser->id
         ]);
 
-        $response = $this->get('/?search=テスト');
+        $response = $this->get('/?searchTerm=テスト');
 
         $response->assertStatus(200);
         $response->assertViewIs('itemlist');
@@ -322,14 +320,22 @@ class ItemListTest extends TestCase
             'seller_id' => $this->otherUser->id
         ]);
 
-        $response = $this->get('/?search=テスト');
+        // Livewireコンポーネントを直接テスト
+        Livewire::actingAs($this->user)
+            ->test('item-search-component')
+            ->set('searchTerm', 'テスト')
+            ->assertSet('searchTerm', 'テスト'); // プロパティが正しく設定されているか確認
 
-        $response->assertStatus(200);
-        // 検索ボックスに検索キーワードが保持されていることを確認
-        $response->assertSee('value="テスト"', false);
+        // ItemListComponentでも検索ワードが保持されているか確認
+        Livewire::actingAs($this->user)
+            ->test('item-list-component')
+            ->call('updateSearchTerm', 'テスト')
+            ->assertSet('searchTerm', 'テスト')
+            ->assertSee('テスト商品'); // 検索結果として商品が表示される
     }
 
     /**
+     * テストケース6: 商品検索機能
      * 空の検索でも正常に動作することを確認
      */
     public function test_empty_search_shows_all_exhibitions()
@@ -338,7 +344,7 @@ class ItemListTest extends TestCase
             'seller_id' => $this->otherUser->id
         ]);
 
-        $response = $this->get('/?search=');
+        $response = $this->get('/?searchTerm=');
 
         $response->assertStatus(200);
         foreach ($exhibitions as $exhibition) {

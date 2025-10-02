@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
-use App\Models\Exhibition;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\ExhibitionController;
 
 class CommentController extends Controller
 {

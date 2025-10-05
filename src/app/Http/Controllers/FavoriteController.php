@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
-    public function toggleFavorite(Request $request, $exhibition_id)
+    public function toggleFavorite(Request $request, $exhibitionId)
     {
-        $exhibition = Exhibition::with('categories')->find($exhibition_id);
+        $exhibition = Exhibition::with('categories')->find($exhibitionId);
 
         $user = Auth::user();
 
         // 既にいいねしているかチェック
         $favorite = Favorite::where('user_id', $user->id)
-            ->where('exhibition_id', $exhibition_id)
+            ->where('exhibition_id', $exhibitionId)
             ->first();
 
         if ($favorite) {
@@ -29,7 +29,7 @@ class FavoriteController extends Controller
             // いいねを追加
             Favorite::create([
                 'user_id' => $user->id,
-                'exhibition_id' => $exhibition_id
+                'exhibition_id' => $exhibitionId
             ]);
             $isFavorited = true;
         }

@@ -19,32 +19,32 @@
 
     <div class="item-list">
         @if(count($exhibitions) > 0)
-            <div class="items-grid">
-                @foreach ($exhibitions as $exhibition)
-                    <div class="item-card">
-                        <a href="/item/:{{$exhibition->id}}" class="detail-link">
-                            <div class="item-image">
-                                <img class="item-card__inner--image" src="{{ Storage::url($exhibition->img_url) }}" alt="{{ $exhibition->name }}">
+        <div class="items-grid">
+            @foreach ($exhibitions as $exhibition)
+            <div class="item-card">
+                <a href="/item/:{{$exhibition->id}}" class="detail-link">
+                    <div class="item-image">
+                        <img class="item-card__inner--image" src="{{ Storage::url($exhibition->img_url) }}" alt="{{ $exhibition->name }}">
 
-                                @if($exhibition->isPurchased())
-                                <div class="item-card__inner--sold">
-                                    <div class="item-card__sold--text">Sold</div>
-                                </div>
-                                @endif
-                            </div>
-                            <p class="item-card__inner--name">{{ $exhibition->name }}</p>
-                        </a>
+                        @if($exhibition->isPurchased())
+                        <div class="item-card__inner--sold">
+                            <div class="item-card__sold--text">Sold</div>
+                        </div>
+                        @endif
                     </div>
-                @endforeach
+                    <p class="item-card__inner--name">{{ $exhibition->name }}</p>
+                </a>
             </div>
+            @endforeach
+        </div>
         @else
-            <div class="no-results">
-                @if(!empty($searchTerm))
-                    <p class="no-result__message">「{{ $searchTerm }}」に一致する商品が見つかりませんでした</p>
-                @else
-                    <p class="no-result__message">表示する商品がありません</p>
-                @endif
-            </div>
+        <div class="no-results">
+            @if(!empty($searchTerm))
+            <p class="no-result__message">「{{ $searchTerm }}」に一致する商品が見つかりませんでした</p>
+            @else
+            <p class="no-result__message">表示する商品がありません</p>
+            @endif
+        </div>
         @endif
     </div>
 </div>

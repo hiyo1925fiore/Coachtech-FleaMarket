@@ -1,11 +1,27 @@
 <div  class="container">
     <div class="mypage__info">
         @if($profile->img_url === "")
-            <div class="mypage__user-image--none"></div>
+        <div class="mypage__user-image--none"></div>
         @else
-            <img class="mypage__user-image" src="{{ Storage::url($profile->img_url) }}" alt="{{ $user->name }}">
+        <img class="mypage__user-image" src="{{ Storage::url($profile->img_url) }}" alt="{{ $user->name }}">
         @endif
-        <h2 class="mypage__user-name">{{ $user->name }}</h2>
+        <div class="mypage__user-info">
+            <h2 class="mypage__user-name">{{ $user->name }}</h2>
+            <div class="user-rating">
+                @if($user->ratingCount() > 0)
+                    @php
+                        $roundedRating = $user->getRoundedRating();
+                    @endphp
+                    @for($i = 1; $i <= 5; $i++)
+                        @if($i <= $roundedRating)
+                        <span class="star star--filled">★</span>
+                        @else
+                        <span class="star star--empty">★</span>
+                        @endif
+                    @endfor
+                @endif
+            </div>
+        </div>
         <a href="/mypage/profile" class="profile-edit-link">プロフィールを編集</a>
     </div>
 
@@ -21,57 +37,84 @@
                 class="tab-btn{{ $activeTab === 'buy' ? '--active' : '' }}">
                 購入した商品
             </a>
+            <a
+                href="{{ route('mypage') }}?page=trading"
+                class="tab-btn{{ $activeTab === 'trading' ? '--active' : '' }}">
+                取引中の商品<span class="count-unread">{{ $unreadCountSum }}</span>
+            </a>
         </div>
 
         <div class="tab-content">
             @if($activeTab === 'sell')
-                <div class="items-grid">
-                    @forelse($exhibitions as $exhibition)
-                    <div class="item-card">
-                        <a href="/item/:{{$exhibition->id}}" class="detail-link">
-                            <div class="item-image">
-                                <img class="item-card__inner--image" src="{{ Storage::url($exhibition->img_url) }}" alt="{{ $exhibition->name }}">
+            <div class="items-grid">
+                @forelse($exhibitions as $exhibition)
+                <div class="item-card">
+                    <a href="/item/:{{$exhibition->id}}" class="detail-link">
+                        <div class="item-image">
+                            <img class="item-card__inner--image" src="{{ Storage::url($exhibition->img_url) }}" alt="{{ $exhibition->name }}">
 
-                                @if($exhibition->isPurchased())
-                                <div class="item-card__inner--sold">
-                                    <div class="item-card__sold--text">Sold</div>
-                                </div>
-                                @endif
+                            @if($exhibition->isPurchased())
+                            <div class="item-card__inner--sold">
+                                <div class="item-card__sold--text">Sold</div>
                             </div>
-                            <p class="item-card__inner--name">{{ $exhibition->name }}</p>
-                        </a>
-                    </div>
-                    @empty
-                        <div class="no-products">
+                            @endif
                         </div>
-                    @endforelse
+                        <p class="item-card__inner--name">{{ $exhibition->name }}</p>
+                    </a>
                 </div>
+                @empty
+                <div class="no-products">
+                </div>
+                @endforelse
+            </div>
             @elseif($activeTab === 'buy')
-                <div class="items-grid">
-                    @forelse($purchasedExhibitions as $exhibition)
-                    <div class="item-card">
-                        <a href="/item/:{{$exhibition->id}}" class="detail-link">
-                            <div class="item-image">
-                                <img class="item-card__inner--image" src="{{ Storage::url($exhibition->img_url) }}" alt="{{ $exhibition->name }}">
+            <div class="items-grid">
+                @forelse($purchasedExhibitions as $exhibition)
+                <div class="item-card">
+                    <a href="/item/:{{$exhibition->id}}" class="detail-link">
+                        <div class="item-image">
+                            <img class="item-card__inner--image" src="{{ Storage::url($exhibition->img_url) }}" alt="{{ $exhibition->name }}">
 
-                                @if($exhibition->isPurchased())
-                                <div class="item-card__inner--sold">
-                                    <div class="item-card__sold--text">Sold</div>
-                                </div>
-                                @endif
+                            @if($exhibition->isPurchased())
+                            <div class="item-card__inner--sold">
+                                <div class="item-card__sold--text">Sold</div>
                             </div>
-                            <p class="item-card__inner--name">{{ $exhibition->name }}</p>
-                        </a>
-                    </div>
-                    @empty
-                        <div class="no-products">
+                            @endif
                         </div>
-                    @endforelse
+                        <p class="item-card__inner--name">{{ $exhibition->name }}</p>
+                    </a>
                 </div>
+                @empty
+                <div class="no-products">
+                </div>
+                @endforelse
+            </div>
+            @elseif($activeTab === 'trading')
+            <div class="items-grid">
+                @forelse($tradingExhibitions as $exhibition)
+                <div class="item-card">
+                    <a href="/chat/{{$exhibition->id}}" class="chat-link">
+                        <div class="item-image">
+                            <img class="item-card__inner--image" src="{{ Storage::url($exhibition->img_url) }}" alt="{{ $exhibition->name }}">
+
+                            @if($exhibition->isUnread())
+                            <div class="item-card__unread">
+                                <p class="item-card__count--unread">{{ $unreadCount[$exhibition->id] ?? 0 }}</p>
+                            </div>
+                            @endif
+                        </div>
+                        <p class="item-card__inner--name">{{ $exhibition->name }}</p>
+                    </a>
+                </div>
+                @empty
+                <div class="no-products">
+                </div>
+                @endforelse
+            </div>
             @else
-                <div class="no-tab-selected">
-                    <p class="no-tab-selected--text">タブを選択して商品を表示してください</p>
-                </div>
+            <div class="no-tab-selected">
+                <p class="no-tab-selected--text">タブを選択して商品を表示してください</p>
+            </div>
             @endif
         </div>
     </div>

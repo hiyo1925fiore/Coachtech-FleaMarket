@@ -9,6 +9,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
@@ -58,25 +59,33 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::post('/item/:{exhibition_id}',[CommentController::class,'storeComment'])
+    Route::post('/item/:{exhibitionId}',[CommentController::class,'storeComment'])
     ->name('comment.store');
-    Route::post('/item/:{exhibition_id}/favorite', [FavoriteController::class, 'toggleFavorite'])
+    Route::post('/item/:{exhibitionId}/favorite', [FavoriteController::class, 'toggleFavorite'])
     ->name('favorite.toggle');
 
-    Route::get('/purchase/:{exhibition_id}', [PurchaseController::class, 'showPurchase'])
-    ->name('purchase.show');
-    Route::get('/purchase/address/:{exhibition_id}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
-    Route::post('/purchase/address/:{exhibition_id}', [PurchaseController::class, 'updateAddress'])->name('purchase.address.update');
-    Route::post('/purchase/:{exhibition_id}', [PurchaseController::class, 'storePurchase'])
-    ->name('purchase.store');
+    Route::get('/purchase/:{exhibitionId}', [PurchaseController::class, 'showPurchase'])
+        ->name('purchase.show');
+    Route::get('/purchase/address/:{exhibitionId}', [PurchaseController::class, 'editAddress'])
+        ->name('purchase.address.edit');
+    Route::post('/purchase/address/:{exhibitionId}', [PurchaseController::class, 'updateAddress'])
+        ->name('purchase.address.update');
+    Route::post('/purchase/:{exhibitionId}', [PurchaseController::class, 'storePurchase'])
+        ->name('purchase.store');
 
     Route::get('/sell', [ExhibitionController::class, 'getExhibition']);
     Route::post('/sell', [ExhibitionController::class, 'storeExhibition']);
 
     // プロフィール関連のルート
     Route::get('/mypage', [ProfileController::class, 'getMypage'])
-    ->name('mypage');
+        ->name('mypage');
     Route::get('/mypage/profile', [ProfileController::class, 'getProfile'])
-    ->name('profile.edit');
+        ->name('profile.edit');
     Route::put('/mypage/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+
+    // チャット画面関連のルート
+    Route::get('/chat/{exhibitionId}', [ChatController::class, 'showChat'])
+        ->name('chat.show');
+    Route::post('/chat/{exhibitionId}',[ChatController::class,'storeChat'])
+    ->name('chat.store');
 });

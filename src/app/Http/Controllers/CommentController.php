@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    public function storeComment(CommentRequest $request, $exhibition_id)
+    public function storeComment(CommentRequest $request, $exhibitionId)
     {
 
         Comment::create([
-            'exhibition_id' => $exhibition_id,
+            'exhibition_id' => $exhibitionId,
             'user_id' => auth()->id(),
             'comment' => $request->comment,
         ]);
 
-        return redirect()->route('item.detail', ['exhibition_id' => $exhibition_id]);
+        return redirect()->route('item.detail', ['exhibition_id' => $exhibitionId]);
     }
 }

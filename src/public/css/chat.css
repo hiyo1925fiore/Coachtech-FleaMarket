@@ -1,0 +1,319 @@
+.content {
+    display: flex;
+    font-family: "Inter";
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.sidebar {
+    width: 17%;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 80px;
+    padding-top: 13px;
+    background-color: #868686;
+    text-align: center;
+}
+
+.sidebar__title {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.1em;
+}
+
+.sidebar__trading-list {
+    margin-top: 59px;
+    padding-left: 0;
+}
+
+.sidebar__trading-list-item {
+    list-style: none;
+}
+
+.sidebar__link {
+    display: inline-block;
+    width: 197px;
+    padding: 2px 0;
+    background-color: #eeefeb;
+    font-size: 24px;
+    font-weight: 400;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat__content {
+    width: 83%;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 41px 0 37px;
+    height: 106px;
+    border-bottom: 2px solid #5f5f5f;
+}
+
+.title__inner {
+    display: flex;
+    align-items: center;
+}
+
+.other-user-image--none,
+.other-user-image {
+    width: 79px;
+    height: 79px;
+    margin-right: 13px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.other-user-image--none {
+    background-color: #d9d9d9;
+}
+
+.other-user-name {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.trade-close-button {
+    display: inline-block;
+    width: 172px;
+    height: 54px;
+    line-height: 54px;
+    background-color: #ff8282;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.exhibition-info {
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    height: 235px;
+    border-bottom: 2px solid #5f5f5f;
+}
+
+.exhibition-image {
+    width: 203px;
+    height: 206px;
+    margin-right: 40px;
+}
+
+.exhibition-info__name {
+    font-size: 48px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.exhibition-info__price {
+    margin: 28px 0 0 0;
+    height: 36px;
+    line-height: 36px;
+}
+
+.exhibition-info__price-text {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
+    vertical-align: bottom;
+    color: #000000;
+}
+
+.exhibition-info__price-price {
+    font-size: 36px;
+    font-weight: 400;
+    color: #000000;
+}
+
+/* チャットエリア */
+/* 自分のメッセージは右寄せ、相手のメッセージは左寄せ */
+.chat-area {
+    padding: 28px 27px 27px 25px;
+}
+
+.chat__item--own {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.chat__own-user-info {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.chat__item--own .chat__sender-name {
+    margin-right: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.chat__item--own .chat__sender-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    background-color: #d9d9d9;
+}
+
+.chat__item--own .chat__message,
+.chat__item--other-user .chat__message {
+    display: inline-block;
+    max-width: 461px;
+    padding: 20px 10px;
+    margin: 0;
+    background-color: #d9d9d9;
+    border-radius: 4px;
+}
+
+.chat__item--own .chat__image,
+.chat__item--other-user .chat__image {
+    max-width: 461px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.chat__item--other-user {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.chat__other-user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.chat__item--other-user .chat__sender-image {
+    width: 60px;
+    height: 60px;
+    margin-right: 21px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    background-color: #d9d9d9;
+}
+
+.chat__item--other-user .chat__sender-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.chat__edit-tool {
+    display: flex;
+}
+
+.chat-input-area {
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+}
+
+.chat-form_image-preview-container {
+    padding-left: 27px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.image-preview {
+    width: 300px;
+    height: 300px;
+    border: 1px solid #5f5f5f;
+}
+
+.chat-input__inner {
+    padding-bottom: 18px;
+    background-color: #ffffff;
+}
+
+.chat-form {
+    display: flex;
+    align-items: center;
+    padding-left: 27px;
+    background-color: #ffffff;
+}
+
+.chat-form__text-area {
+    width: 937px;
+    height: 44px;
+    line-height: 1.5;
+    margin-right: 18px;
+    padding: 6px 19px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
+    border: 1px solid #5f5f5f;
+    border-radius: 4px;
+    resize: none;
+    overflow-y: auto;
+}
+
+.chat-form__text-area::placeholder {
+    color: #7b7b7b;
+    opacity: 1;
+}
+
+/* Firefox用 */
+.chat-form__text-area::-moz-placeholder {
+    color: #7b7b7b;
+    opacity: 1;
+}
+
+/* IE/Edge用 */
+.chat-form__text-area:-ms-input-placeholder {
+    color: #7b7b7b;
+    opacity: 1;
+}
+
+.chat-form__file-input-wrapper {
+    height: 44px;
+    line-height: 44px;
+}
+
+.chat-form__file-select-button {
+    display: inline-block;
+    width: 143px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ff5555;
+    text-align: center;
+    border: 2px solid #ff5555;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.chat-form__button {
+    width: 80px;
+    height: 61px;
+    margin-left: 1px;
+}
+
+.chat-form__button-submit {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

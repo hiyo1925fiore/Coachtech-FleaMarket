@@ -38,14 +38,63 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Purchase::class);
     }
 
-    public function feedbacks()
+    /**
+     * このユーザーが他のユーザーに対して行った評価（評価者として）
+     */
+    public function givenRatings()
     {
-        return $this->hasMany(Feedback::class, 'reviewer_id');
+        return $this->hasMany(Rating::class, 'rater_id');
     }
 
-    public function chats()
+    /**
+     * このユーザーが他のユーザーから受け取った評価（評価対象として）
+     */
+    public function receivedRatings()
     {
-        return $this->hasMany(Chat::class);
+        return $this->hasMany(Rating::class, 'user_id');
+    }
+
+    /**
+     * 送信したチャット
+     */
+    public function sentChats()
+    {
+        return $this->hasMany(Chat::class, 'user_id');
+    }
+
+    /**
+     * 受信したチャット
+     */
+    public function receivedChats()
+    {
+        return $this->hasMany(Chat::class, 'receiver_id');
+    }
+
+    /**
+     * このユーザーの平均評価を取得
+     */
+    public function averageRating()
+    {
+        return $this->receivedRatings()->avg('rating');
+    }
+
+    /**
+     * このユーザーの評価数を取得
+     */
+    public function ratingCount()
+    {
+        return $this->receivedRatings()->count();
+    }
+
+    /**
+     * 四捨五入した評価値を取得（0〜5）
+     */
+    public function getRoundedRating()
+    {
+        $avg = $this->averageRating();
+        if (!$avg) return 0;
+
+        return round($avg);
     }
 
     /**

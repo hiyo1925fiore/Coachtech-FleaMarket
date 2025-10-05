@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class PurchaseController extends Controller
 {
-    public function showPurchase($exhibition_id){
-        $exhibition = Exhibition::findOrFail($exhibition_id);
+    public function showPurchase($exhibitionId){
+        $exhibition = Exhibition::findOrFail($exhibitionId);
         $user=Auth::user();
 
         // セッションから配送先情報を取得、なければprofilesテーブルから初期値を設定
@@ -31,9 +31,9 @@ class PurchaseController extends Controller
         return view('purchase',compact('exhibition', 'user', 'shippingAddress'));
     }
 
-    public function editAddress($exhibition_id)
+    public function editAddress($exhibitionId)
     {
-        $exhibition = Exhibition::findOrFail($exhibition_id);
+        $exhibition = Exhibition::findOrFail($exhibitionId);
         $shippingAddress = session('shipping_address', [
             'post_code' => '',
             'address' => '',
@@ -43,7 +43,7 @@ class PurchaseController extends Controller
         return view('address_edit', compact('exhibition', 'shippingAddress'));
     }
 
-    public function updateAddress(PurchaseRequest $request, $exhibition_id)
+    public function updateAddress(PurchaseRequest $request, $exhibitionId)
     {
         // セッションに配送先情報を保存
         session([
@@ -54,19 +54,19 @@ class PurchaseController extends Controller
             ]
         ]);
 
-        return redirect()->route('purchase.show', $exhibition_id);
+        return redirect()->route('purchase.show', $exhibitionId);
     }
 
-    public function storePurchase(PurchaseRequest $request, $exhibition_id)
+    public function storePurchase(PurchaseRequest $request, $exhibitionId)
     {
-        $exhibition = Exhibition::findOrFail($exhibition_id);
+        $exhibition = Exhibition::findOrFail($exhibitionId);
         $user = Auth::user();
         $shippingAddress = session('shipping_address');
 
         // purchasesテーブルに保存
         Purchase::create([
             'user_id' => $user->id,
-            'exhibition_id' => $exhibition_id,
+            'exhibition_id' => $exhibitionId,
             'payment' => $request->payment,
             'post_code' => $shippingAddress['post_code'],
             'address' => $shippingAddress['address'],

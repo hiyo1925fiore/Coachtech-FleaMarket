@@ -16,8 +16,8 @@ class ExhibitionController extends Controller
         return view('itemlist');
     }
 
-    public function getDetail($exhibition_id){
-        $exhibition = Exhibition::with('categories')->find($exhibition_id);
+    public function getDetail($exhibitionId){
+        $exhibition = Exhibition::with('categories')->find($exhibitionId);
 
         // いいね数を取得
         $favoriteCount = $exhibition->favorites()->count();
@@ -31,7 +31,7 @@ class ExhibitionController extends Controller
         }
 
         // コメントを取得（ユーザー情報とプロフィール画像も含む）
-        $comments = Comment::where('exhibition_id', $exhibition_id)
+        $comments = Comment::where('exhibition_id', $exhibitionId)
             ->with(['user', 'user.profile'])
             ->orderBy('created_at', 'asc')
             ->get();

@@ -72,8 +72,7 @@
                     <select class="exhibition-form__select" name="condition_id" id="">
                         <option disabled selected>選択してください</option>
                         @foreach($conditions as $condition)
-                        <option value="{{ $condition->id }}" {{ old('condition_id')==$condition->id ? 'selected' : '' }}>{{
-                            $condition->condition }}</option>
+                        <option value="{{ $condition->id }}" {{ old('condition_id')==$condition->id ? 'selected' : '' }}>{{ $condition->condition }}</option>
                         @endforeach
                     </select>
                 </label>

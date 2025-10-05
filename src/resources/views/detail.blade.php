@@ -41,13 +41,13 @@
             </div>
 
             @if($exhibition->isPurchased())
-                <p class="purchase-field__sold">
-                    売り切れ
-                </p>
+            <p class="purchase-field__sold">
+                売り切れ
+            </p>
             @else
-                <a href="../purchase/:{{$exhibition->id}}" class="purchase-link">
-                    購入手続きへ
-                </a>
+            <a href="../purchase/:{{$exhibition->id}}" class="purchase-link">
+                購入手続きへ
+            </a>
             @endif
 
 
@@ -63,10 +63,10 @@
                         <th class="exhibition-info__inner-title">カテゴリー</th>
                         <td class="exhibition-info__categories">
                             @foreach($exhibition->categories as $index => $category)
-                                <span class="category-tag">{{ $category->category }}</span>
-                                @if($index < $exhibition->categories->count() - 1)
-                                    <span class="category-separator"></span>
-                                @endif
+                            <span class="category-tag">{{ $category->category }}</span>
+                            @if($index < $exhibition->categories->count() - 1)
+                                <span class="category-separator"></span>
+                            @endif
                             @endforeach
                         </td>
                     </tr>
@@ -85,17 +85,17 @@
                     @foreach ($comments as $comment)
                     <div class="comment-item-user">
                         @if($comment->user->profile && $comment->user->profile->img_url)
-                            <img class="comment__user-image"
-                                src="{{ Storage::url($comment->user->profile->img_url) }}"
-                                alt="{{ $comment->user->name }}">
+                        <img class="comment__user-image"
+                            src="{{ Storage::url($comment->user->profile->img_url) }}"
+                            alt="{{ $comment->user->name }}">
                         @else
-                            <div class="comment__user-image"></div>
+                        <div class="comment__user-image"></div>
                         @endif
 
                         <p class="comment__user-name">{{ $comment->user->name }}</p>
                     </div>
                     <p class="comment__comment">{{ $comment->comment }}</p>
-                @endforeach
+                    @endforeach
                 </div>
 
                 <h4 class="comment-form__title">商品へのコメント</h4>

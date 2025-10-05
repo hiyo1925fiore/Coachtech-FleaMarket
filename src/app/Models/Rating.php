@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Chat extends Model
+class Rating extends Model
 {
     use HasFactory;
 
@@ -14,16 +14,14 @@ class Chat extends Model
     ];
 
     protected $fillable = [
+        'user_id',       // 評価対象ユーザー（取引相手）
+        'rater_id',      // 評価者
         'exhibition_id',
-        'user_id',
-        'receiver_id',
-        'message',
-        'img_url',
-        'read_at',
+        'rating',        // 評価点（1〜5）
     ];
 
     /**
-     * 送信者
+     * 評価対象のユーザー
      */
     public function user()
     {
@@ -31,13 +29,16 @@ class Chat extends Model
     }
 
     /**
-     * 受信者
+     * 評価者
      */
-    public function receiver()
+    public function rater()
     {
-        return $this->belongsTo(User::class, 'receiver_id');
+        return $this->belongsTo(User::class, 'rater_id');
     }
 
+    /**
+     * 評価対象の商品
+     */
     public function exhibition()
     {
         return $this->belongsTo(Exhibition::class);

@@ -16,8 +16,19 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <img src="{{asset('image/logo.svg')}}" alt="COACHTECH" class="header__logo">
+            @auth
+            <!-- ログイン後 -->
+            <a class="header__link--item-list" href="/?page=mylist">
+                <img src="{{asset('image/logo.svg')}}" alt="COACHTECH" class="header__logo">
+            </a>
+            @else
+            <!-- ログイン前 -->
+            <a class="header__link--item-list" href="/">
+                <img src="{{asset('image/logo.svg')}}" alt="COACHTECH" class="header__logo">
+            </a>
+            @endauth
 
+            @if( !in_array(Route::currentRouteName(), ['register', 'login', 'verification.notice']) )
             <!-- 検索コンポーネント -->
             @livewire('item-search-component')
 
@@ -45,6 +56,7 @@
                     </li>
                 </ul>
             </nav>
+            @endif
         </div>
     </header>
     <main>

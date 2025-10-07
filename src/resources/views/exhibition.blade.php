@@ -141,5 +141,5 @@
     </form>
 </div>
 <!-- 選択した画像のプレビュー＆画像選択時のみ画像名を表示する -->
-<script src="{{ asset('js/exhibition_preview_image.js') }}"></script>
+<script src="{{ asset('js/preview_image.js') }}"></script>
 @endsection

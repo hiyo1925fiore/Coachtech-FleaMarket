@@ -2,11 +2,21 @@
     font-family: "Inter";
     font-optical-sizing: auto;
     font-style: normal;
-    padding: 59px 0;
+    padding-bottom: 59px;
+}
+
+/* 成功メッセージ */
+.alert-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
 }
 
 .profile-form__heading {
-    margin: 0;
+    margin-top: 59px;
     text-align: center;
 }
 
@@ -123,7 +133,7 @@
 @media screen and (max-width: 850px) {
     /* 850px以下に適用されるCSS（タブレット用） */
     .profile-edit__content {
-        padding: 24px 0;
+        padding-bottom: 24px;
     }
 
     .profile-form__heading-title {

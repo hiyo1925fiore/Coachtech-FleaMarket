@@ -6,6 +6,12 @@
 
 @section('content')
 <div class="profile-edit__content">
+    @if (session('message'))
+    <div class="alert-success">
+        {{ session('message') }}
+    </div>
+    @endif
+
     <div class="profile-form__heading">
         <h1 class="profile-form__heading-title">プロフィール設定</h1>
     </div>

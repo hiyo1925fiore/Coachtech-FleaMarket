@@ -9,7 +9,13 @@
     <div class="sidebar">
         <h3 class="sidebar__title">その他の取引</h3>
         <ul class="sidebar__trading-list">
-            <li class="sidebar__trading-list-item"><a class="sidebar__link" href="#">{{ $exhibition->name }}</a></li>
+            @foreach($tradingExhibitions as $tradingExhibition)
+            <li class="sidebar__trading-list-item">
+                <a class="sidebar__link" href="{{ route('chat.show', $tradingExhibition->id) }}">
+                    {{ $tradingExhibition->name }}
+                </a>
+            </li>
+            @endforeach
         </ul>
     </div>
 
@@ -24,8 +30,37 @@
                 <h2 class="other-user-name">{{ $otherUser->name }}さんとの取引画面</h2>
             </div>
             @if($userId != $exhibition->seller_id)
-            <a class="trade-close-button" href="#{{$exhibition->id}}">取引を完了する</a>
+            <a class="trade-close-button" href="javascript:void(0);">取引を完了する</a>
             @endif
+
+            <!-- 評価モーダル -->
+            <div class="modal">
+                <div class="modal-overlay"></div>
+                <div class="modal__inner">
+                    <div class="modal__content">
+                        <form class="modal__rating-submit-form" action="{{ route('rating.store', $exhibition->id) }}" method="post">
+                            @csrf
+                            <div class="modal-form__title">
+                                <h4 class="modal-form__title-text">取引が完了しました。</h4>
+                            </div>
+                            <div class="modal-form__inner">
+                                <p class="modal-form__question">今回の取引相手はどうでしたか？</p>
+                                <div class="modal-form__stars">
+                                    <span class="star" data-value="1">★</span>
+                                    <span class="star" data-value="2">★</span>
+                                    <span class="star" data-value="3">★</span>
+                                    <span class="star" data-value="4">★</span>
+                                    <span class="star" data-value="5">★</span>
+                                </div>
+                            </div>
+                            <div class="modal-form__submit">
+                                <input type="hidden" name="rating" value="3">
+                                <button class="modal-form__rating-submit-button" type="submit">送信する</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="exhibition-info">
@@ -118,6 +153,26 @@
         </div>
     </div>
 </div>
-<!-- 選択した画像のプレビュー＆画像選択時のみ画像名を表示する -->
-<script src="{{ asset('js/exhibition_preview_image.js') }}"></script>
+<!-- 選択した画像のプレビューを表示する -->
+<script src="{{ asset('js/preview_image.js') }}"></script>
+<!-- チャット入力欄の内容を保持する -->
+<script src="{{ asset('js/chat_save_message.js') }}"></script>
+<!-- 取引完了処理 -->
+<script src="{{ asset('js/trade_complete.js') }}"></script>
+@if($showRatingModal)
+<script>
+    // 出品者で購入者が評価済みの場合、ページ読み込み時にモーダルを表示
+    window.addEventListener('DOMContentLoaded', function() {
+        const modal = document.querySelector('.modal');
+        const modalOverlay = modal.querySelector('.modal-overlay');
+
+        modal.style.visibility = 'visible';
+        modal.style.opacity = '1';
+
+        if (modalOverlay) {
+            modalOverlay.style.pointerEvents = 'none';
+        }
+    });
+</script>
+@endif
 @endsection

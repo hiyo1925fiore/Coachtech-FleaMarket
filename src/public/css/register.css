@@ -2,11 +2,11 @@
     font-family: "Inter";
     font-optical-sizing: auto;
     font-style: normal;
-    padding: 92px 0;
+    padding-bottom: 92px;
 }
 
 .register-form__heading-title {
-    margin: 0;
+    margin-top: 92px;
     text-align: center;
     font-weight: 700;
     font-size: 36px;
@@ -87,7 +87,7 @@
     width: 50%;
     text-align: center;
     margin: 0 auto;
-    padding: 145px 0;
+    padding: 237px 0;
 }
 
 .verify-email__message {
@@ -139,6 +139,16 @@
     background-color: #d4edda;
     border: 1px solid #c3e6cb;
     color: #155724;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* 失敗メッセージ */
+.alert-error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c2c7;
+    color: #842029;
     padding: 10px 15px;
     border-radius: 4px;
     margin-bottom: 20px;

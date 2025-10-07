@@ -28,7 +28,7 @@
             </a>
             @endauth
 
-            @if( !in_array(Route::currentRouteName(), ['register', 'login', 'verification.notice']) )
+            @if( !in_array(Route::currentRouteName(), ['register', 'login', 'verification.notice', 'chat.show']) )
             <!-- 検索コンポーネント -->
             @livewire('item-search-component')
 

@@ -10,6 +10,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
@@ -30,7 +31,7 @@ Route::get('/', function (Request $request) {
     ]);
 })
     ->name('itemlist');
-Route::get('/item/:{exhibition_id}',[ExhibitionController::class,'getDetail'])
+Route::get('/item/{exhibition_id}',[ExhibitionController::class,'getDetail'])
     ->name('item.detail');
 Route::post('/register', [UserController::class, 'storeUser']);
 Route::post('/login', [UserController::class, 'loginUser']);
@@ -50,6 +51,17 @@ Route::middleware('auth')->group(function () {
         return redirect('/mypage/profile')->with('verified', true);
     })->middleware('signed')->name('verification.verify');
 
+    // 認証確認ルート
+    Route::get('/email/verify/check', function () {
+        if (Auth::user()->hasVerifiedEmail()) {
+            // 認証済み → プロフィール設定画面へ
+            return redirect('/mypage/profile')->with('message', 'メール認証は完了しています。');
+        } else {
+            // 未認証 → そのまま認証誘導画面
+            return back()->with('error', 'メール認証がまだ完了していません。メール内のリンクをクリックしてください。');
+        }
+    })->middleware('auth')->name('verification.check');
+
     // メール認証再送信
     Route::post('/email/verification-notification', function (Request $request) {
         $request->user()->sendEmailVerificationNotification();
@@ -59,18 +71,18 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::post('/item/:{exhibitionId}',[CommentController::class,'storeComment'])
+    Route::post('/item/{exhibitionId}',[CommentController::class,'storeComment'])
     ->name('comment.store');
-    Route::post('/item/:{exhibitionId}/favorite', [FavoriteController::class, 'toggleFavorite'])
+    Route::post('/item/{exhibitionId}/favorite', [FavoriteController::class, 'toggleFavorite'])
     ->name('favorite.toggle');
 
-    Route::get('/purchase/:{exhibitionId}', [PurchaseController::class, 'showPurchase'])
+    Route::get('/purchase/{exhibitionId}', [PurchaseController::class, 'showPurchase'])
         ->name('purchase.show');
-    Route::get('/purchase/address/:{exhibitionId}', [PurchaseController::class, 'editAddress'])
+    Route::get('/purchase/address/{exhibitionId}', [PurchaseController::class, 'editAddress'])
         ->name('purchase.address.edit');
-    Route::post('/purchase/address/:{exhibitionId}', [PurchaseController::class, 'updateAddress'])
+    Route::post('/purchase/address/{exhibitionId}', [PurchaseController::class, 'updateAddress'])
         ->name('purchase.address.update');
-    Route::post('/purchase/:{exhibitionId}', [PurchaseController::class, 'storePurchase'])
+    Route::post('/purchase/{exhibitionId}', [PurchaseController::class, 'storePurchase'])
         ->name('purchase.store');
 
     Route::get('/sell', [ExhibitionController::class, 'getExhibition']);
@@ -86,6 +98,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // チャット画面関連のルート
     Route::get('/chat/{exhibitionId}', [ChatController::class, 'showChat'])
         ->name('chat.show');
-    Route::post('/chat/{exhibitionId}',[ChatController::class,'storeChat'])
+    Route::post('/chat/{exhibitionId}',[ChatController::class,'store'])
     ->name('chat.store');
+    Route::post('/chat/{exhibitionId}/close',[RatingController::class,'store'])
+    ->name('rating.store');
 });

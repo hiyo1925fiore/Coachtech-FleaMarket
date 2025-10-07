@@ -45,7 +45,7 @@
                 売り切れ
             </p>
             @else
-            <a href="../purchase/:{{$exhibition->id}}" class="purchase-link">
+            <a href="../purchase/{{$exhibition->id}}" class="purchase-link">
                 購入手続きへ
             </a>
             @endif

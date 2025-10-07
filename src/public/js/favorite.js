@@ -18,7 +18,7 @@ $(document).ready(function () {
         button.prop("disabled", true);
 
         $.ajax({
-            url: "/item/:" + exhibitionId + "/favorite",
+            url: "/item/" + exhibitionId + "/favorite",
             method: "POST",
             data: {
                 _token: $('meta[name="csrf-token"]').attr("content"),

@@ -49,7 +49,7 @@
             <div class="items-grid">
                 @forelse($exhibitions as $exhibition)
                 <div class="item-card">
-                    <a href="/item/:{{$exhibition->id}}" class="detail-link">
+                    <a href="/item/{{$exhibition->id}}" class="detail-link">
                         <div class="item-image">
                             <img class="item-card__inner--image" src="{{ Storage::url($exhibition->img_url) }}" alt="{{ $exhibition->name }}">
 
@@ -71,7 +71,7 @@
             <div class="items-grid">
                 @forelse($purchasedExhibitions as $exhibition)
                 <div class="item-card">
-                    <a href="/item/:{{$exhibition->id}}" class="detail-link">
+                    <a href="/item/{{$exhibition->id}}" class="detail-link">
                         <div class="item-image">
                             <img class="item-card__inner--image" src="{{ Storage::url($exhibition->img_url) }}" alt="{{ $exhibition->name }}">
 

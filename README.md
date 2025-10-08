@@ -1,7 +1,7 @@
 # coachtechフリマ
 ## 環境構築
 **Dockerビルド**
-1. `git@github.com:hiyo1925fiore/Coachtech-FleaMarket.git`
+1. `git clone  git@github.com:hiyo1925fiore/Coachtech-FleaMarket.git`
 2. DockerDesktopアプリを立ち上げる
 3. プロジェクト直下で、以下のコマンドを実行する
 ```

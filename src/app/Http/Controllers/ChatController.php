@@ -147,4 +147,53 @@ class ChatController extends Controller
 
         return redirect()->route('chat.show', $exhibitionId);
     }
+
+    public function update(ChatRequest $request, $chatId)
+    {
+        $chat = Chat::findOrFail($chatId);
+
+        // ログインユーザーのIDを取得
+        $userId = Auth::id();
+
+        // 自分が送信したメッセージのみ編集可能
+        if ($chat->user_id != $userId) {
+            abort(403, 'このメッセージを編集する権限がありません');
+        }
+
+        // 自分が評価済みかチェック
+        $myRating = Rating::where('exhibition_id', $chat->exhibition_id)
+            ->where('rater_id', $userId)
+            ->first();
+
+        // 評価済みの場合はメッセージ編集不可
+        if ($myRating) {
+            return redirect()->route('chat.show', $chat->exhibition_id)
+                ->with('error', '評価済みのためメッセージを編集できません。');
+        }
+
+        $chat->message = $request->message;
+        $chat->save();
+
+        return redirect()->route('chat.show', $chat->exhibition_id)
+            ->with('success', 'メッセージを編集しました。');
+    }
+
+    public function destroy($chatId)
+    {
+        $chat = Chat::findOrFail($chatId);
+
+        // ログインユーザーのIDを取得
+        $userId = Auth::id();
+
+        // 自分が送信したメッセージのみ削除可能
+        if ($chat->user_id != $userId) {
+            abort(403, 'このメッセージを削除する権限がありません');
+        }
+
+        // ソフトデリート
+        $chat->delete();
+
+        return redirect()->route('chat.show', $chat->exhibition_id)
+            ->with('success', 'メッセージを削除しました。');
+    }
 }

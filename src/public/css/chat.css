@@ -112,118 +112,6 @@
     cursor: pointer;
 }
 
-/* 評価モーダル */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    visibility: hidden;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 100;
-    transition: opacity 0.3s, visibility 0.3s;
-}
-
-.modal-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.modal__inner {
-    position: absolute;
-    top: 60%;
-    left: 60%;
-    width: 598px;
-    max-width: 90%;
-    background-color: #fdfce6;
-    border: 1px solid #000000;
-    border-radius: 15px;
-    transform: translate(-50%, -50%);
-    z-index: 101;
-}
-
-.modal__content {
-    position: relative;
-}
-
-.modal-form__title {
-    margin: 21px 0 30px;
-    border-bottom: 1px solid #000000;
-}
-
-.modal-form__title-text {
-    margin: 0 0 25px 23px;
-    font-size: 35px;
-    font-weight: 400;
-    color: #000000;
-}
-
-.modal-form__inner {
-    padding-bottom: 24px;
-    border-bottom: 1px solid #000000;
-}
-
-.modal-form__question {
-    font-size: 20px;
-    font-weight: 400;
-    color: #868686;
-    margin: 19px 23px 31px;
-}
-
-/* 星評価 */
-.modal-form__stars {
-    display: flex;
-    justify-content: center;
-    line-height: 100px;
-    gap: 13px;
-    font-size: 100px;
-    cursor: pointer;
-}
-
-.star {
-    color: #d9d9d9;
-    transition: color 0.2s;
-    user-select: none;
-}
-
-.star.active,
-.star.hover {
-    color: #fff048;
-}
-
-.modal-form__submit {
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    padding-right: 14px;
-}
-
-.modal-form__rating-submit-button {
-    display: block;
-    width: 127px;
-    height: 49px;
-    line-height: 49px;
-    margin: 14px 0;
-    background-color: #ff8282;
-    color: #ffffff;
-    font-size: 24px;
-    font-weight: 400;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.modal-form__rating-submit-button:hover {
-    background-color: #ff6666;
-}
-
 /* 商品詳細 */
 .exhibition-info {
     position: sticky;
@@ -357,8 +245,42 @@
     color: #000000;
 }
 
+/* 編集・削除ボタン */
 .chat__edit-tool {
     display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.chat__edit-button,
+.chat__delete-button {
+    display: inline-block;
+    width: 30px;
+    height: 18px;
+    padding: 0;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: center;
+    color: #5f5f5f;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.chat__edit-button:hover,
+.chat__delete-button:hover {
+    opacity: 0.7;
+}
+
+.chat__delete-form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
 }
 
 .chat-input-area {
@@ -525,6 +447,220 @@
     height: 100%;
 }
 
+/* 評価モーダル */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 100;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.modal__inner {
+    position: absolute;
+    top: 60%;
+    left: 60%;
+    width: 598px;
+    max-width: 90%;
+    background-color: #fdfce6;
+    border: 1px solid #000000;
+    border-radius: 15px;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+}
+
+.modal__content {
+    position: relative;
+}
+
+.modal-form__title {
+    margin: 21px 0 30px;
+    border-bottom: 1px solid #000000;
+}
+
+.modal-form__title-text {
+    margin: 0 0 25px 23px;
+    font-size: 35px;
+    font-weight: 400;
+    color: #000000;
+}
+
+.modal-form__inner {
+    padding-bottom: 24px;
+    border-bottom: 1px solid #000000;
+}
+
+.modal-form__question {
+    font-size: 20px;
+    font-weight: 400;
+    color: #868686;
+    margin: 19px 23px 31px;
+}
+
+/* 星評価 */
+.modal-form__stars {
+    display: flex;
+    justify-content: center;
+    line-height: 100px;
+    gap: 13px;
+    font-size: 100px;
+    cursor: pointer;
+}
+
+.star {
+    color: #d9d9d9;
+    transition: color 0.2s;
+    user-select: none;
+}
+
+.star.active,
+.star.hover {
+    color: #fff048;
+}
+
+.modal-form__submit {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 14px;
+}
+
+.modal-form__rating-submit-button {
+    display: block;
+    width: 127px;
+    height: 49px;
+    line-height: 49px;
+    margin: 14px 0;
+    background-color: #ff8282;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 400;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-form__rating-submit-button:hover {
+    background-color: #ff6666;
+}
+
+/* 編集モーダル */
+.edit-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 100;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.edit-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.edit-modal__inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    max-width: 90%;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 15px;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+    padding: 20px;
+}
+
+.edit-modal__title {
+    margin: 0 0 16px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.edit-modal__error {
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #ff5555;
+}
+
+.edit-modal__error--text {
+    margin: 5px 0;
+}
+
+.edit-modal__textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #5f5f5f;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.edit-modal__buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.edit-modal__cancel,
+.edit-modal__submit {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-modal__cancel {
+    background-color: #868686;
+    color: #ffffff;
+}
+
+.edit-modal__cancel:hover {
+    background-color: #6f6f6f;
+}
+
+.edit-modal__submit {
+    background-color: #4caf50;
+    color: #ffffff;
+}
+
+.edit-modal__submit:hover {
+    background-color: #45a049;
+}
+
 @media screen and (max-width: 850px) {
     /* 850px以下に適用されるCSS（タブレット用） */
     .sidebar {
@@ -585,54 +721,6 @@
         line-height: 36px;
         font-size: 14px;
         border-radius: 30px;
-    }
-
-    /* 評価モーダル */
-    .modal__inner {
-        top: 50%;
-        left: 56%;
-        width: 398px;
-    }
-
-    .modal-form__title {
-        margin: 14px 0 20px;
-    }
-
-    .modal-form__title-text {
-        margin: 0 0 17px 15px;
-        font-size: 25px;
-    }
-
-    .modal-form__inner {
-        padding-bottom: 16px;
-    }
-
-    .modal-form__question {
-        font-size: 16px;
-        margin: 13px 15px 21px;
-    }
-
-    /* 星評価 */
-    .modal-form__stars {
-        line-height: 66px;
-        gap: 7px;
-        font-size: 66px;
-    }
-
-    .modal-form__submit {
-        display: flex;
-        align-items: center;
-        justify-content: right;
-        padding-right: 14px;
-    }
-
-    .modal-form__rating-submit-button {
-        display: block;
-        width: 85px;
-        height: 33px;
-        line-height: 33px;
-        margin: 10px 0;
-        font-size: 16px;
     }
 
     /* 商品詳細 */
@@ -724,7 +812,17 @@
     }
 
     .chat__edit-tool {
-        display: flex;
+        gap: 6px;
+        margin-top: 6px;
+    }
+
+    .chat__edit-button,
+    .chat__delete-button {
+        width: 24px;
+        height: 15px;
+        font-size: 12px;
+        line-height: 15px;
+        text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
     }
 
     .chat-form_image-preview-container {
@@ -803,5 +901,73 @@
     .chat-form__button-icon {
         width: 53px;
         height: 40px;
+    }
+
+    /* 評価モーダル */
+    .modal__inner {
+        top: 50%;
+        left: 56%;
+        width: 398px;
+    }
+
+    .modal-form__title {
+        margin: 14px 0 20px;
+    }
+
+    .modal-form__title-text {
+        margin: 0 0 17px 15px;
+        font-size: 25px;
+    }
+
+    .modal-form__inner {
+        padding-bottom: 16px;
+    }
+
+    .modal-form__question {
+        font-size: 16px;
+        margin: 13px 15px 21px;
+    }
+
+    /* 星評価 */
+    .modal-form__stars {
+        line-height: 66px;
+        gap: 7px;
+        font-size: 66px;
+    }
+
+    .modal-form__submit {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        padding-right: 14px;
+    }
+
+    .modal-form__rating-submit-button {
+        display: block;
+        width: 85px;
+        height: 33px;
+        line-height: 33px;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+
+    /* 編集モーダル */
+    .edit-modal__inner {
+        width: 400px;
+    }
+
+    .edit-modal__title {
+        margin-bottom: 12px;
+        font-size: 20px;
+    }
+
+    .edit-modal__error {
+        margin-top: 5px;
+        font-size: 14px;
+    }
+
+    .edit-modal__textarea {
+        min-height: 120px;
+        font-size: 14px;
     }
 }

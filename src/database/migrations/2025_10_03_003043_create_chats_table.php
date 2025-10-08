@@ -21,6 +21,7 @@ class CreateChatsTable extends Migration
             $table->text('message');
             $table->string('img_url')->nullable();
             $table->timestamp('read_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

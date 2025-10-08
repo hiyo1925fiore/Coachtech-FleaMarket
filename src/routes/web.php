@@ -99,7 +99,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/chat/{exhibitionId}', [ChatController::class, 'showChat'])
         ->name('chat.show');
     Route::post('/chat/{exhibitionId}',[ChatController::class,'store'])
-    ->name('chat.store');
+        ->name('chat.store');
+    Route::put('/chat/{chatId}', [ChatController::class, 'update'])
+        ->name('chat.update');
+    Route::delete('/chat/{chatId}', [ChatController::class, 'destroy'])
+        ->name('chat.destroy');
     Route::post('/chat/{exhibitionId}/close',[RatingController::class,'store'])
-    ->name('rating.store');
+        ->name('rating.store');
 });

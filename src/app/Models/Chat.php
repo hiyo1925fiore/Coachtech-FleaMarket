@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Chat extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $guarded = [
         'id',
@@ -21,6 +22,8 @@ class Chat extends Model
         'img_url',
         'read_at',
     ];
+
+    protected $dates = ['deleted_at'];
 
     /**
      * 送信者

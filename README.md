@@ -3,55 +3,36 @@
 **Dockerビルド**
 1. `git@github.com:hiyo1925fiore/Coachtech-FleaMarket.git`
 2. DockerDesktopアプリを立ち上げる
-3. `docker-compose up -d --build`
-> MacのM1・M2チップのPCの場合、no matching manifest for linux/arm64/v8 in the manifest list entriesのメッセージが表示されビルドができないことがあります。 エラーが発生する場合は、docker-compose.ymlファイルの「mysql」内に「platform」の項目を追加で記載してください
+3. プロジェクト直下で、以下のコマンドを実行する
 ```
-mysql:
-    platform: linux/x86_64(この文追加)
-    image: mysql:8.0.26
-    environment:
+make init
 ```
-**Laravel環境構築**
-1. `docker-compose exec php bash`
-2. `composer install`
-3. `composer require livewire/livewire`
-4. `composer require laravel/cashier`
-5. 「.env.example」ファイルを 「.env」ファイルに命名を変更。または、新しく.envファイルを作成
-6. .envに以下の環境変数を追加
-```
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=laravel_db
-DB_USERNAME=laravel_user
-DB_PASSWORD=laravel_pass
-STRIPE_KEY=your-stripe-key（stripeの公開可能キー）
-STRIPE_SECRET=your-stripe-secret（stripeのシークレットキー）
-```
-5. アプリケーションキーの作成
-```
-php artisan key:generate
-```
-6. マイグレーションの実行
-```
-php artisan migrate
-```
-7. シーディングの実行
-```
-php artisan db:seed
-```
-8. シンボリックリンクの作成
-```
-php artisan storage:link
-```
+※使用可能なコマンドはMakefileを参照
 ## userのログイン用初期データ
 初期データ1
 - メールアドレス: hoge1@example.com
-- パスワード: hoge1234
+- パスワード: password
   
 初期データ2
 - メールアドレス: hoge2@example.com
-- パスワード: hoge5678
+- パスワード: password
+
+初期データ3
+- メールアドレス: hoge3@example.com
+- パスワード: password
+## PHPUnitを利用したテストに関して
+以下のコマンドを実行してください  
+```
+//テスト用データベースの作成
+docker-compose exec mysql bash
+mysql -u root -p
+//パスワードはrootと入力
+create database demo_test;
+  
+docker-compose exec php bash
+php artisan migrate:fresh --env=testing
+./vendor/bin/phpunit
+```
 ## 使用技術（実行環境）
 - PHP 8.4.1
 - Laravel 8.83.8

@@ -53,7 +53,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'user_id' => 3,
-                'img_url' => '',
+                'img_url' => 'profile_images/椿.jpg',
                 'post_code' => '222-2222',
                 'address' => '大阪府大阪市北区梅田2-2-2',
                 'building' => 'COACHTECHマンション梅田 202号室'

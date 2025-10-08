@@ -76,6 +76,7 @@ class PurchaseController extends Controller
         // セッションから配送先情報を削除
         session()->forget('shipping_address');
 
-        return redirect()->route('itemlist');
+        return redirect()->route('itemlist',['page' => 'mylist'])
+            ->with('success', '商品の購入が完了しました。発送までしばらくお待ちください。');
     }
 }

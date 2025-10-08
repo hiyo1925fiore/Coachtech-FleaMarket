@@ -6,9 +6,9 @@
 
 @section('content')
 <div class="register__content">
-    @if (session('message'))
+    @if (session('success'))
     <div class="alert-success">
-        {{ session('message') }}
+        {{ session('success') }}
     </div>
     @endif
 

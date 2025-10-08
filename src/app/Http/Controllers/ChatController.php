@@ -121,7 +121,7 @@ class ChatController extends Controller
         // 評価済みの場合はメッセージ送信不可
         if ($myRating) {
             return redirect()->route('chat.show', $exhibitionId)
-                ->with('error', '評価済みのためメッセージを送信できません');
+                ->with('error', '評価済みのためメッセージを送信できません。');
         }
 
         // 取引相手の情報を取得

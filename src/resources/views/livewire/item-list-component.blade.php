@@ -1,5 +1,17 @@
 <div class="itemlist__content">
     {{-- resources/views/livewire/itemlist-component.blade.php --}}
+    @if (session('success'))
+    <div class="alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert-error">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <div class="itemlist__tab-nav">
         <a
             href="javascript:void(0)"

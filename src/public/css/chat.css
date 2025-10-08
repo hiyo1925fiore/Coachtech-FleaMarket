@@ -369,6 +369,7 @@
 }
 
 .chat-form_image-preview-container {
+    position: relative;
     padding-left: 27px;
     background-color: rgba(255, 255, 255, 0.7);
 }
@@ -380,7 +381,47 @@
     border: 1px solid #5f5f5f;
 }
 
+/* 画像削除ボタン */
+.image-delete-button {
+    position: absolute;
+    top: 10px;
+    left: 227px; /* 27px(padding) + 250px(画像幅) - 40px(ボタン幅) - 10px*/
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background-color 0.3s;
+}
+
+.image-delete-button:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.image-delete-button::before,
+.image-delete-button::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background-color: #ffffff;
+}
+
+.image-delete-button::before {
+    transform: rotate(45deg);
+}
+
+.image-delete-button::after {
+    transform: rotate(-45deg);
+}
+
 .chat-input__inner {
+    width: 100%;
     padding-bottom: 18px;
     background-color: #ffffff;
 }
@@ -388,6 +429,14 @@
 /* 画像プレビューがある時だけ、入力欄の上部に余白を追加 */
 .chat-input-area:has(.image-preview) .chat-input__inner {
     padding-top: 18px;
+}
+
+.form__error {
+    margin: 5px 0;
+    padding-left: 27px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #ff5555;
 }
 
 .chat-form {
@@ -398,7 +447,7 @@
 }
 
 .chat-form__text-area {
-    width: 937px;
+    width: 78%;
     height: 44px;
     line-height: 1.5;
     margin-right: 18px;
@@ -430,13 +479,14 @@
 }
 
 .chat-form__file-input-wrapper {
+    width: 12%;
     height: 44px;
     line-height: 44px;
 }
 
 .chat-form__file-select-button {
     display: inline-block;
-    width: 143px;
+    width: 100%;
     font-size: 20px;
     font-weight: 700;
     color: #ff5555;
@@ -444,6 +494,15 @@
     border: 2px solid #ff5555;
     border-radius: 10px;
     cursor: pointer;
+}
+
+/* 画像追加ボタンの無効化スタイル */
+.chat-form__file-select-button.disabled {
+    color: #fa8484;
+    border-color: #fa8484;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.8;
 }
 
 .chat-form__button {
@@ -670,12 +729,24 @@
 
     .chat-form_image-preview-container {
         padding-left: 18px;
-        background-color: rgba(255, 255, 255, 0.7);
     }
 
     .image-preview {
         width: 180px;
         height: 180px;
+    }
+
+    .image-delete-button {
+        top: 8px;
+        left: 163px; /* 18px(padding) + 180px(画像幅) - 30px(ボタン幅) - 5px */
+        width: 30px;
+        height: 30px;
+    }
+
+    .image-delete-button::before,
+    .image-delete-button::after {
+        width: 15px;
+        height: 2px;
     }
 
     .chat-input__inner {
@@ -687,12 +758,18 @@
         padding-top: 12px;
     }
 
+    .form__error {
+        margin: 5px 0;
+        padding-left: 18px;
+        font-size: 16px;
+    }
+
     .chat-form {
         padding-left: 18px;
     }
 
     .chat-form__text-area {
-        width: 394px;
+        width: 66%;
         height: 34px;
         line-height: 1.5;
         margin-right: 12px;
@@ -707,12 +784,13 @@
     }
 
     .chat-form__file-input-wrapper {
+        width: 20%;
         height: 34px;
         line-height: 34px;
     }
 
     .chat-form__file-select-button {
-        width: 122px;
+        width: 100%;
         font-size: 16px;
     }
 

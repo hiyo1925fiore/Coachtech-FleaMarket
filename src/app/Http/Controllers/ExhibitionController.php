@@ -70,6 +70,7 @@ class ExhibitionController extends Controller
         //category_idを中間テーブルに格納
         $exhibition->categories()->attach($request->category_id);
 
-        return redirect('/');
+        return redirect()->route('itemlist',['page' => 'mylist'])
+            ->with('success', '商品を出品しました。');
     }
 }

@@ -35,7 +35,7 @@ class UserController extends Controller
                 return redirect()->route('verification.notice');
             }
 
-            return redirect('/?page=mylist');
+            return redirect()->route('itemlist',['page' => 'mylist']);
         }
 
         // カスタムエラーメッセージ

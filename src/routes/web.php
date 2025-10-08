@@ -65,7 +65,7 @@ Route::middleware('auth')->group(function () {
     // メール認証再送信
     Route::post('/email/verification-notification', function (Request $request) {
         $request->user()->sendEmailVerificationNotification();
-        return back()->with('message', '認証メールを再送信しました。');
+        return back()->with('success', '認証メールを再送信しました。');
     })->middleware('throttle:6,1')->name('verification.send');
 });
 

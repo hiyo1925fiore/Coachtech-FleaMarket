@@ -33,7 +33,8 @@ class RatingController extends Controller
             ->first();
 
         if ($existingRating) {
-            return redirect('/?page=mylist')->with('error', 'すでに評価済みです');
+            return redirect()->route('itemlist',['page' => 'mylist'])
+                ->with('error', 'すでに評価済みです。');
         }
 
         // 取引相手のIDを取得
@@ -59,6 +60,7 @@ class RatingController extends Controller
             Mail::to($seller->email)->send(new TradeCompleteNotification($exhibition, $userId));
         }
 
-        return redirect('/?page=mylist')->with('success', '評価を送信しました');
+        return redirect()->route('itemlist',['page' => 'mylist'])
+            ->with('success', '評価を送信しました。');
     }
 }

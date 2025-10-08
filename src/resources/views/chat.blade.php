@@ -155,6 +155,61 @@
 </div>
 <!-- 選択した画像のプレビューを表示する -->
 <script src="{{ asset('js/preview_image.js') }}"></script>
+<!-- 画像削除機能（チャット画面専用） -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const imageInput = document.getElementById("img_url");
+    const previewContainer = document.getElementById("image-preview-container");
+    const fileSelectButton = document.querySelector(".chat-form__file-select-button");
+
+    // 画像選択時の処理を拡張
+    imageInput.addEventListener("change", function () {
+        if (this.files && this.files.length > 0) {
+            // 削除ボタンを追加
+            addDeleteButton();
+            // 画像追加ボタンを無効化
+            disableFileSelectButton();
+        }
+    });
+
+    // 削除ボタンを追加する関数
+    function addDeleteButton() {
+        // 既存の削除ボタンがあれば削除
+        const existingButton = previewContainer.querySelector(".image-delete-button");
+        if (existingButton) {
+            existingButton.remove();
+        }
+
+        // 新しい削除ボタンを作成
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("image-delete-button");
+        deleteButton.type = "button";
+        deleteButton.setAttribute("aria-label", "画像を削除");
+
+        // 削除ボタンのクリックイベント
+        deleteButton.addEventListener("click", function () {
+            // 画像選択をクリア
+            imageInput.value = "";
+            // プレビューを削除
+            previewContainer.innerHTML = "";
+            // 画像追加ボタンを有効化
+            enableFileSelectButton();
+        });
+
+        previewContainer.appendChild(deleteButton);
+    }
+
+    // 画像追加ボタンを無効化
+    function disableFileSelectButton() {
+        fileSelectButton.classList.add("disabled");
+    }
+
+    // 画像追加ボタンを有効化
+    function enableFileSelectButton() {
+        fileSelectButton.classList.remove("disabled");
+    }
+});
+</script>
 <!-- チャット入力欄の内容を保持する -->
 <script src="{{ asset('js/chat_save_message.js') }}"></script>
 <!-- 取引完了処理 -->

@@ -9,6 +9,26 @@
     width: 100%;
 }
 
+/* 成功メッセージ */
+.alert-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* 失敗メッセージ */
+.alert-error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c2c7;
+    color: #842029;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
 .itemlist__tab-nav {
     width: 100%;
     margin-top: 47px;

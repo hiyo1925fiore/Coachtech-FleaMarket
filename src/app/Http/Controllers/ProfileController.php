@@ -33,7 +33,7 @@ class ProfileController extends Controller
         ]);
 
         // 画像がアップロードされた場合の処理
-        $imgUrl = null;
+        $imgUrl = '';
         if ($request->hasFile('img_url')) {
             // 既存の画像ファイルを削除
             if ($oldImageName && Storage::disk('public')->exists('profile_images/' . $oldImageName)) {
@@ -60,6 +60,7 @@ class ProfileController extends Controller
             ]
         );
 
-        return redirect()->route('itemlist',['page' => 'mylist']);
+        return redirect()->route('itemlist',['page' => 'mylist'])
+            ->with('success', 'プロフィールを設定しました。');
     }
 }

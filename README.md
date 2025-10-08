@@ -39,7 +39,7 @@ php artisan migrate:fresh --env=testing
 - MySQL 8.0.26
 - Mailpit
 ## ER図
-![er drawio](https://github.com/user-attachments/assets/caf79233-d1e8-4ef4-96c1-22edc6fa7194)
+<img width="1059" height="1291" alt="Image" src="https://github.com/user-attachments/assets/6b00c387-0f70-4b5c-8c93-d3c9e65a2265" />
 
 
 ## URL

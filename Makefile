@@ -1,0 +1,34 @@
+init:
+	docker-compose up -d --build
+	docker-compose exec php composer install
+	docker-compose exec php composer require livewire/livewire
+	docker-compose exec php cp .env.example .env
+	mkdir ./src/storage/app/public/img
+	mkdir ./src/storage/app/public/profile_images
+	mv ./src/public/img/copy_storage_img/*.jpg ./src/storage/app/public/img
+	mv ./src/public/img/copy_storage_profile_images/*.jpg ./src/storage/app/public/profile_images
+	docker-compose exec php php artisan key:generate
+	docker-compose exec php php artisan storage:link
+	docker-compose exec php chmod -R 777 storage bootstrap/cache
+	sleep 10
+	@make fresh
+
+fresh:
+	docker compose exec php php artisan migrate:fresh --seed
+
+restart:
+	@make down
+	@make up
+
+up:
+	docker-compose up -d
+
+down:
+	docker compose down --remove-orphans
+
+cache:
+	docker-compose exec php php artisan cache:clear
+	docker-compose exec php php artisan config:cache
+
+stop:
+	docker-compose stop
